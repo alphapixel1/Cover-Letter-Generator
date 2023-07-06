@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cover_Letter_Generator.Navigation"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="100">
-    <Grid>
+             d:DesignHeight="24" d:DesignWidth="100">
+    <Grid Margin="2,2,5,2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="#00FFFFFF" IsHitTestVisible="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition/>

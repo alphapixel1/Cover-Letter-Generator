@@ -24,5 +24,16 @@ namespace Cover_Letter_Generator.Navigation
         {
             InitializeComponent();
         }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Background= new SolidColorBrush(Colors.LightGray);
+
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Background = null;
+        }
     }
 }
