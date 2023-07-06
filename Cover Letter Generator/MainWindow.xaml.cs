@@ -32,16 +32,33 @@ namespace Cover_Letter_Generator
             //CreateDocument();
             UserInfo info = new()
             {
-                PhoneNumber="513-441-4499",
-                Email="bellnc@mail.uc.edu",
-                Name="Nick Bell",
-                Address= "254 Senator Pl #13, Cincinnati, Ohio 45220"
+                PhoneNumber="513-867-5309",
+                Email="email@mail.uc.edu",
+                Name="Richy Rich",
+                Address= "1600 Pennsylvania Avenue NW, Washington, DC 20500"
             };
             var fs = new FileStream(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Document.docx", FileMode.Create, FileAccess.Write);
 
             var doc = new Template.Templates.BasicTemplate().ApplyTemplate(info, "Hiring Manager", "hello");
             doc.Write(fs);
+         //   gptAsync();
         }
+
+        private async Task gptAsync()
+        {
+            try
+            {
+                var resp = await ChatGPT.ChatGPT_API.GetChatGPTResponse(ChatGPT.ChatGPT_API.Key, "write me a cover letter for this company,I do not want the response to include a greeting or a signature , here are the details: \n" + File.ReadAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\job description.txt"));
+                Console.WriteLine(resp);
+
+                Console.WriteLine("Done");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         private void CreateDocument()
         {
             var newFile2 = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Document.docx";
@@ -67,6 +84,12 @@ namespace Cover_Letter_Generator
 
                 doc.Write(fs);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainContentFrame.Content = new CoverLetterForm();
+            NavbarContentFrame.Content = new Navbar();
         }
     }
 }
