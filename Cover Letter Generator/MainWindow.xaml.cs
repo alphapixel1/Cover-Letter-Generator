@@ -18,6 +18,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml;
 
 namespace Cover_Letter_Generator
 {
@@ -32,18 +35,33 @@ namespace Cover_Letter_Generator
             //CreateDocument();
             UserInfo info = new()
             {
-                PhoneNumber="513-867-5309",
-                Email="email@mail.uc.edu",
-                Name="Richy Rich",
-                Address= "1600 Pennsylvania Avenue NW, Washington, DC 20500"
+                PhoneNumber = "513-867-5309",
+                Email = "email@mail.uc.edu",
+                Name = "Richy Rich",
+                Address = "1600 Pennsylvania Avenue NW, Washington, DC 20500"
             };
-            var fs = new FileStream(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Document.docx", FileMode.Create, FileAccess.Write);
+            // var fs = new FileStream(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Document.docx", FileMode.Create, FileAccess.Write);
 
-            var doc = new Template.Templates.BasicTemplate().ApplyTemplate(info, "Hiring Manager", "hello");
-            doc.Write(fs);
-         //   gptAsync();
+            //            var doc = new Template.Templates.BasicTemplate().ApplyTemplate(info, "Hiring Manager", "hello");
+            //          doc.Write(fs);
+
+            // ReplaceTextInWordDocument2(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Basic Template.docx", "%name%", "Nick Bell", @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx");
+            //   gptAsync();
+            Dictionary<string, string> replacements = new()
+            {
+                {"%name%",info.Name},
+                {"%email%",info.Email },
+                {"%phone%",info.PhoneNumber },
+                {"%address%",info.Address },
+                {"%recipient%","Hiring Manager" },
+                {"%body%","this is the body" }
+            };
+            var input = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Basic Template.docx";
+            var output = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx";
+            StaticClasses.WordTools.MultiReplacement2(input, replacements, output);
         }
 
+     
         private async Task gptAsync()
         {
             try
@@ -90,6 +108,46 @@ namespace Cover_Letter_Generator
         {
             MainContentFrame.Content = new CoverLetterForm();
             NavbarContentFrame.Content = new Navbar();
+            LoadRtfIntoFlowDocumentViewer(@"C:\Users\Nick\Desktop\test.rtf", documentViewer);
+          /*  string filePath = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx";
+
+            FlowDocument flowDocument = new FlowDocument();
+            using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(filePath, false))
+            {
+                MainDocumentPart mainPart = wordDoc.MainDocumentPart;
+                using (var stream = mainPart.GetStream())
+                {
+                    TextRange textRange = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
+                    textRange.Load(stream, DataFormats.Rtf);
+                }
+            }
+
+            // Set the FlowDocument as the source of the FlowDocumentReader
+            documentViewer.Document = flowDocument;*/
+        }
+        public void LoadRtfIntoFlowDocumentViewer(string filePath, FlowDocumentReader flowDocumentViewer)
+        {
+            // Read the RTF content from the file
+            string rtfText = File.ReadAllText(filePath);
+
+            // Create a FlowDocument from the RTF content
+            FlowDocument flowDocument = new FlowDocument();
+            TextRange textRange = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
+            using (MemoryStream rtfMemoryStream = new MemoryStream())
+            {
+                using (StreamWriter rtfStreamWriter = new StreamWriter(rtfMemoryStream))
+                {
+                    rtfStreamWriter.Write(rtfText);
+                    rtfStreamWriter.Flush();
+                    rtfMemoryStream.Seek(0, SeekOrigin.Begin);
+
+                    // Load the RTF content into the FlowDocument
+                    textRange.Load(rtfMemoryStream, DataFormats.Rtf);
+                }
+            }
+
+            // Set the FlowDocument as the Document property of the FlowDocumentViewer
+            flowDocumentViewer.Document = flowDocument;
         }
     }
 }

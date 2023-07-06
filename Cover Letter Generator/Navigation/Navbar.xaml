@@ -14,7 +14,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
-                <Button Background="#00FFFFFF">
+                <Button Background="#00FFFFFF" HorizontalAlignment="Left">
                     <Image Source="/Navigation/navbarButton.png" Stretch="Uniform"  Height="20" Width="20"/>
                 </Button>
                 <Grid>
