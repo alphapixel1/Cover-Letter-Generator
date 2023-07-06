@@ -8,6 +8,9 @@ namespace Cover_Letter_Generator.Templates
 {
     internal class UserInfo
     {
-        public string Name, Email, Address, PhoneNumber;
+        public string Name, Email, PhoneNumber;
+        public string Street,City, State, Zip;
+
+        public string Address => $"{Street}, {City}, {State}, {Zip}";
     }
 }

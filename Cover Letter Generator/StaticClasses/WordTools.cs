@@ -19,15 +19,9 @@ namespace Cover_Letter_Generator.StaticClasses
                 List<Text> texts = mainPart.RootElement.Descendants<Text>().ToList();
                 Console.WriteLine(texts.Count());
                 //add header texts
-                texts.AddRange(mainPart.HeaderParts.SelectMany(e =>
-                {
-                    return e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>());
-                }));
+                texts.AddRange(mainPart.HeaderParts.SelectMany(e =>e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
                 //add footer
-                texts.AddRange(mainPart.FooterParts.SelectMany(e =>
-                {
-                    return e.Footer.Descendants<Run>().SelectMany(e => e.Descendants<Text>());
-                }));
+                texts.AddRange(mainPart.FooterParts.SelectMany(e =>e.Footer.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
 
                 foreach (var text in texts)
                 {

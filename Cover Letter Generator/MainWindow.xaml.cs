@@ -38,7 +38,10 @@ namespace Cover_Letter_Generator
                 PhoneNumber = "513-867-5309",
                 Email = "email@mail.uc.edu",
                 Name = "Richy Rich",
-                Address = "1600 Pennsylvania Avenue NW, Washington, DC 20500"
+                Street = "1600 Pennsylvania Avenue NW",
+                City="DC",
+                State="Washington",
+                Zip= "20500",
             };
             // var fs = new FileStream(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Document.docx", FileMode.Create, FileAccess.Write);
 

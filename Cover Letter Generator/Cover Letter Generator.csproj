@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Template\TemplateUI\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Navigation\navbarButton.png" />
   </ItemGroup>
 
