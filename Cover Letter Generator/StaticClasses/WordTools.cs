@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System.Drawing.Printing;
+
 namespace Cover_Letter_Generator.StaticClasses
 {
     public static class WordTools
@@ -15,9 +17,8 @@ namespace Cover_Letter_Generator.StaticClasses
             using (WordprocessingDocument doc = WordprocessingDocument.Open(newFilePath, true))
             {
                 MainDocumentPart mainPart = doc.MainDocumentPart;
-                //get body texts
+           
                 List<Text> texts = mainPart.RootElement.Descendants<Text>().ToList();
-                Console.WriteLine(texts.Count());
                 //add header texts
                 texts.AddRange(mainPart.HeaderParts.SelectMany(e =>e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
                 //add footer
@@ -25,15 +26,24 @@ namespace Cover_Letter_Generator.StaticClasses
 
                 foreach (var text in texts)
                 {
+                    Console.WriteLine(text.Text);
                     foreach (KeyValuePair<string, string> entry in replacements)
                     {
-                        if (text.Text.Contains(entry.Key))
+                        while (text.Text.Contains(entry.Key))
                         {
                             text.Text = text.Text.Replace(entry.Key, entry.Value);
                         }
                     }
                 }
                 doc.Save();
+            }
+        }
+
+        public static void ConvertDocxToPdf(string docxFilePath, string pdfFilePath)
+        {
+            using (WordprocessingDocument doc = WordprocessingDocument.Open(docxFilePath, true))
+            {
+                doc.Clone(pdfFilePath);
             }
         }
     }

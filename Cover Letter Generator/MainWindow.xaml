@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <Frame x:Name="NavbarContentFrame"/>
         <Frame x:Name="MainContentFrame" Grid.Column="1"/>
-        <FlowDocumentReader  x:Name="documentViewer" Grid.Column="1" />
+        
 
 
     </Grid>

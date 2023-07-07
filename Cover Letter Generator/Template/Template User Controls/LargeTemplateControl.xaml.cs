@@ -20,9 +20,17 @@ namespace Cover_Letter_Generator.Template.Template_User_Controls
     /// </summary>
     public partial class LargeTemplateControl : UserControl
     {
-        public LargeTemplateControl()
+        private readonly Template template;
+
+        public LargeTemplateControl(Template template)
         {
             InitializeComponent();
+            this.template = template;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            TitleBlock.Text = template.Name;
         }
     }
 }

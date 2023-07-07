@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cover_Letter_Generator.Template.Template_User_Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-          
-    </Grid>
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
+             Height="35" Width="120">
+    <Border BorderBrush="LightGray" BorderThickness="1">
+        <Grid>
+            <TextBlock x:Name="TitleBlock" Text="Social media marketing Template" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Border>
 </UserControl>

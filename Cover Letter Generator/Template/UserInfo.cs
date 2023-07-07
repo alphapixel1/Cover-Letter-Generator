@@ -8,9 +8,22 @@ namespace Cover_Letter_Generator.Templates
 {
     internal class UserInfo
     {
-        public string Name, Email, PhoneNumber;
+        public string Name, Email, PhoneNumber,Website;
         public string Street,City, State, Zip;
 
         public string Address => $"{Street}, {City}, {State}, {Zip}";
+
+        public Dictionary<string, string> Replacements => new Dictionary<string, string>()
+        {
+            {"%name%",Name},
+            {"%email%",Email },
+            {"%phone%",PhoneNumber },
+            {"%address%",Address },
+            {"%street%",Street},
+            {"%city%",City},
+            {"%state%",State},
+            {"%zip%",Zip},
+            {"%website%",Website},
+        };
     }
 }

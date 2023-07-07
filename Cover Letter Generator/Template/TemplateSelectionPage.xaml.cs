@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cover_Letter_Generator.Template;
+using Cover_Letter_Generator.Template.Template_User_Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,13 @@ namespace Cover_Letter_Generator
         public TemplateSelectionPage()
         {
             InitializeComponent();
+        }
+        private void RefreshTemplates()
+        {
+            foreach (var item in TemplateManager.GetTemplates())
+            {
+                TemplateWrap.Children.Add(new LargeTemplateControl(item));
+            }
         }
     }
 }
