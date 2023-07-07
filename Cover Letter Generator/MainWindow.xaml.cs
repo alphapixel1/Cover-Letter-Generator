@@ -1,5 +1,4 @@
-﻿using Cover_Letter_Generator.Templates;
-using NPOI.OpenXmlFormats.Wordprocessing;
+﻿using NPOI.OpenXmlFormats.Wordprocessing;
 using NPOI.XWPF.Model;
 using NPOI.XWPF.UserModel;
 using System;
@@ -30,12 +29,13 @@ namespace Cover_Letter_Generator
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Navbar navbar;
         public MainWindow()
         {
             TemplateManager.InitialSetup();
             InitializeComponent();
             //CreateDocument();
-            UserInfo info = new()
+            UserInfo.UserInfoData info = new()
             {
                 PhoneNumber = "513-867-5309",
                 Email = "email@mail.uc.edu",
@@ -119,23 +119,14 @@ namespace Cover_Letter_Generator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainContentFrame.Content = new TemplateSelectionPage();
-            NavbarContentFrame.Content = new Navbar();
-          /*  string filePath = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx";
-
-            FlowDocument flowDocument = new FlowDocument();
-            using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(filePath, false))
-            {
-                MainDocumentPart mainPart = wordDoc.MainDocumentPart;
-                using (var stream = mainPart.GetStream())
-                {
-                    TextRange textRange = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
-                    textRange.Load(stream, DataFormats.Rtf);
-                }
-            }
-
-            // Set the FlowDocument as the source of the FlowDocumentReader
-            documentViewer.Document = flowDocument;*/
+            navbar = new Navbar();
+            NavbarContentFrame.Content = navbar;
+            navbar.NavigationEvent += Navbar_NavigationEvent;
         }
-       
+
+        private void Navbar_NavigationEvent(object? sender, Navigation.NavigationPage e)
+        {
+            MainContentFrame.Content = Navigation.NavigationPages.GetPage(e);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Cover_Letter_Generator.Navigation
 {
     public enum NavigationPage
     {
-        Main,Settings,UserInfo,Templates
+        CoverCreator,Settings,UserInfo,Templates
     }
     internal class NavigationPages
     {
@@ -17,12 +17,12 @@ namespace Cover_Letter_Generator.Navigation
         {
             switch (page)
             {
-                case NavigationPage.Main:
+                case NavigationPage.CoverCreator:
                     return new CoverLetterForm();
                 case NavigationPage.Settings:
                     return null;
                 case NavigationPage.UserInfo:
-                    return null;
+                    return new UserInfo.UserInfoPage();
                 case NavigationPage.Templates:
                     return new TemplateSelectionPage();
                 default:

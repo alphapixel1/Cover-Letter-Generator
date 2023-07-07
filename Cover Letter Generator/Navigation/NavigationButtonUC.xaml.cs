@@ -20,8 +20,14 @@ namespace Cover_Letter_Generator.Navigation
     /// </summary>
     public partial class NavigationButtonUC : UserControl
     {
-        public static readonly DependencyProperty BoldProperty = DependencyProperty.Register("Bold", typeof(bool), typeof(NavigationButtonUC), new PropertyMetadata(false,OnBoldChanged ));
+        public static readonly DependencyProperty PageProperty = DependencyProperty.Register("Page", typeof(NavigationPage), typeof(NavigationButtonUC), new PropertyMetadata(null));
+        public NavigationPage Page
+        {
+            get { return (NavigationPage)GetValue(PageProperty); }
+            set { SetValue(PageProperty, value); }
+        }
 
+        public static readonly DependencyProperty BoldProperty = DependencyProperty.Register("Bold", typeof(bool), typeof(NavigationButtonUC), new PropertyMetadata(false,OnBoldChanged ));
         public bool Bold
         {
             get { return (bool)GetValue(BoldProperty); }

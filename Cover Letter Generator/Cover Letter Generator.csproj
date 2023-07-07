@@ -12,9 +12,10 @@
     <None Remove="navbarButton.png" />
     <None Remove="Navigation\contact-info.png" />
     <None Remove="Navigation\home.png" />
-    <None Remove="Navigation\letter.png" />
     <None Remove="Navigation\letter2.png" />
     <None Remove="Navigation\menu.png" />
+    <None Remove="Navigation\settings.png" />
+    <None Remove="UserInfo\contact-info.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,9 +28,10 @@
   <ItemGroup>
     <Resource Include="Navigation\contact-info.png" />
     <Resource Include="Navigation\home.png" />
-    <Resource Include="Navigation\letter.png" />
     <Resource Include="Navigation\letter2.png" />
     <Resource Include="Navigation\menu.png" />
+    <Resource Include="Navigation\settings.png" />
+    <Resource Include="UserInfo\contact-info.png" />
   </ItemGroup>
 
   <ItemGroup>

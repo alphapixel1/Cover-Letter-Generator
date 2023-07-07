@@ -22,6 +22,7 @@ namespace Cover_Letter_Generator
     public partial class Navbar : Page
     {
         private bool Collapsed = false;
+        public event EventHandler<NavigationPage> NavigationEvent;
         public Navbar()
         {
             InitializeComponent();
@@ -34,6 +35,14 @@ namespace Cover_Letter_Generator
             foreach (var item in ButtonGrid.Children.OfType<NavigationButtonUC>())
             {
                 item.Collapsed = Collapsed;
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in ButtonGrid.Children.OfType<NavigationButtonUC>().Where(e => !e.Bold))
+            {
+                item.MouseDown += (a, b) => NavigationEvent?.Invoke(this, item.Page);
             }
         }
     }

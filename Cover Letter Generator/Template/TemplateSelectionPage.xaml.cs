@@ -22,57 +22,24 @@ namespace Cover_Letter_Generator
     /// </summary>
     public partial class TemplateSelectionPage : Page
     {
+        private TemplateScrollView templateScrollView;
         public List<Template.Template>? templates;
         public Template.Template? selectedTemplate;
         public TemplateSelectionPage()
         {
             InitializeComponent();
         }
-        private void RefreshTemplates()
-        {
-            TemplateStack.Children.Clear();
-            var t = TemplateManager.GetTemplates();
-            if (t != null)
-            {
-                templates = t;
-                var users = t.Where(e => e.TemplateGroup == TemplateGroup.User);
-                var microsoft = t.Where(e => e.TemplateGroup == TemplateGroup.Microsoft);
-                var other = t.Where(e => e.TemplateGroup == TemplateGroup.Other);
-                foreach (var item in new Dictionary<string, IEnumerable<Template.Template>>(){
-                    {"User Templates",users},
-                    {"Microsoft Templates",microsoft },
-                    {"Other Templates",other }
-                })
-                {
-                    if (item.Key.Count() > 0)
-                    {
-                        TemplateStack.Children.Add(new TextBlock()
-                        {
-                            FontSize = 17,
-                            Text = item.Key,
-                            Margin = new Thickness(0, 5, 0, 2)
-                        });
-                        var wrap = new WrapPanel();
-                        foreach (var temp in item.Value)
-                        {
-                            var uc = new LargeTemplateControl(temp);
-                            uc.selected += (a, b) => SelectTemplate(b);
-                            wrap.Children.Add(uc);
-                        }
-                        TemplateStack.Children.Add(wrap);
-                    }
-                }
-             
-            }
-        }
-        private void SelectTemplate(Template.Template t)
-        {
-            TemplateNameBlock.Text = t.Name;
-            selectedTemplate = t;
-        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
+        {    
+            templateScrollView= new TemplateScrollView();
+            templateScrollView.TemplateSelected += TemplateScrollView_TemplateSelected;
+            TemplateSelectorFrame.Content = templateScrollView;
+        }
+
+        private void TemplateScrollView_TemplateSelected(object? sender, Template.Template e)
         {
-            RefreshTemplates();
+            TemplateNameBlock.Text = e.Name;
+            selectedTemplate = e;
         }
     }
 }

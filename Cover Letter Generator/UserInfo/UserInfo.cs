@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cover_Letter_Generator.Templates
+namespace Cover_Letter_Generator.UserInfo
 {
-    internal class UserInfo
+    internal class UserInfoData
     {
-        public string Name, Email, PhoneNumber,Website;
-        public string Street,City, State, Zip;
+        public string Name, Email, PhoneNumber, Website;
+        public string Street, City, State, Zip;
 
         public string Address => $"{Street}, {City}, {State}, {Zip}";
 

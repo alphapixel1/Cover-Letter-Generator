@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cover_Letter_Generator"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NavBar">
     <Border BorderThickness="0,0,1,0" BorderBrush="LightGray">
@@ -20,11 +21,14 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Navigation:NavigationButtonUC Grid.Row="0" DisplayText="GPT Cover" Icon="/Navigation/menu.png" Bold="true" MouseDown="NavBarOpenClose_MouseDown"/>
-                <Navigation:NavigationButtonUC Grid.Row="1" DisplayText="Cover Creator" Icon="/Navigation/home.png" />
-                <Navigation:NavigationButtonUC Grid.Row="2" DisplayText="Templates" Icon="/Navigation/letter2.png" />
-                <Navigation:NavigationButtonUC Grid.Row="3" DisplayText="User Info" Icon="/Navigation/contact-info.png" />
+                <Navigation:NavigationButtonUC Grid.Row="1" DisplayText="Cover Creator" Icon="/Navigation/home.png" Page="CoverCreator"/>
+                <Navigation:NavigationButtonUC Grid.Row="2" DisplayText="Templates" Icon="/Navigation/letter2.png" Page="Templates"/>
+                <Navigation:NavigationButtonUC Grid.Row="3" DisplayText="User Info" Icon="/Navigation/contact-info.png" Page="UserInfo"/>
+                <Navigation:NavigationButtonUC Grid.Row="5" DisplayText="Settings" Icon="/Navigation/settings.png" Page="Settings"/>
             </Grid>
         </Grid>
     </Border>
