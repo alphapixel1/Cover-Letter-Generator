@@ -15,7 +15,9 @@
     <None Remove="Navigation\letter2.png" />
     <None Remove="Navigation\menu.png" />
     <None Remove="Navigation\settings.png" />
-    <None Remove="UserInfo\contact-info.png" />
+    <None Remove="UserInfo\email.png" />
+    <None Remove="UserInfo\telephone.png" />
+    <None Remove="UserInfo\website.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +33,9 @@
     <Resource Include="Navigation\letter2.png" />
     <Resource Include="Navigation\menu.png" />
     <Resource Include="Navigation\settings.png" />
-    <Resource Include="UserInfo\contact-info.png" />
+    <Resource Include="UserInfo\email.png" />
+    <Resource Include="UserInfo\telephone.png" />
+    <Resource Include="UserInfo\website.png" />
   </ItemGroup>
 
   <ItemGroup>

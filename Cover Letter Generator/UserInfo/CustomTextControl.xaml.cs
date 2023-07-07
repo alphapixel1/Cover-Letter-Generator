@@ -42,8 +42,8 @@ namespace Cover_Letter_Generator.Form
             InitializeComponent();
         }
 
-        private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => IconImage.Visibility = Visibility.Collapsed;
+        private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => IconImage.Opacity = .3;
 
-        private void TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => IconImage.Visibility = Visibility.Visible;
+        private void TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => IconImage.Opacity = 1;
     }
 }

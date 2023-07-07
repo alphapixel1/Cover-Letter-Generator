@@ -9,6 +9,8 @@
       Title="UserInfoPage">
 
     <WrapPanel>
-        <form:CustomTextControl Width="200" Label="Test" Icon="/UserInfo/contact-info.png"/>
+        <form:CustomTextControl Width="200" Label="Phone" Icon="/UserInfo/telephone.png"/>
+        <form:CustomTextControl Width="200" Label="Email" Icon="/UserInfo/email.png"/>
+        <form:CustomTextControl Width="220" Label="Website" Icon="/UserInfo/website.png"/>
     </WrapPanel>
 </Page>
