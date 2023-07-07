@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cover_Letter_Generator.Navigation"
              mc:Ignorable="d" 
-             d:DesignHeight="24" d:DesignWidth="100">
-    <Grid Margin="2,2,5,2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="#00FFFFFF" IsHitTestVisible="True">
+             Height="31" d:DesignWidth="100" Cursor="Hand">
+    <Grid Margin="0,2,5,2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="#00FFFFFF" IsHitTestVisible="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="22"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Source="/Navigation/navbarButton.png" Margin="2,0"/>
-        <TextBlock Text="Test" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center"/>
+        <Image Source="{Binding Icon, RelativeSource={RelativeSource AncestorType={x:Type local:NavigationButtonUC}}}" Margin="2,0,0,0" Height="25" VerticalAlignment="Center"/>
+        <TextBlock x:Name="TitleBlock" Text="{Binding DisplayText, RelativeSource={RelativeSource AncestorType={x:Type local:NavigationButtonUC}}}" Margin="2,0,2,0" Grid.Column="1" TextAlignment="Left" FontSize="15" VerticalAlignment="Center"/>
 
     </Grid>
 </UserControl>

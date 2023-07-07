@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cover_Letter_Generator.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace Cover_Letter_Generator
     /// </summary>
     public partial class Navbar : Page
     {
+        private bool Collapsed = false;
         public Navbar()
         {
             InitializeComponent();
+        }
+
+
+        private void NavBarOpenClose_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Collapsed = !Collapsed;
+            foreach (var item in ButtonGrid.Children.OfType<NavigationButtonUC>())
+            {
+                item.Collapsed = Collapsed;
+            }
         }
     }
 }

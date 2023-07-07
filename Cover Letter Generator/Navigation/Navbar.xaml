@@ -13,17 +13,19 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical">
-                <Button Background="#00FFFFFF" HorizontalAlignment="Left">
-                    <Image Source="/Navigation/navbarButton.png" Stretch="Uniform"  Height="20" Width="20"/>
-                </Button>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Navigation:NavigationButtonUC />
-                </Grid>
-            </StackPanel>
+
+            <Grid x:Name="ButtonGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Navigation:NavigationButtonUC Grid.Row="0" DisplayText="GPT Cover" Icon="/Navigation/menu.png" Bold="true" MouseDown="NavBarOpenClose_MouseDown"/>
+                <Navigation:NavigationButtonUC Grid.Row="1" DisplayText="Cover Creator" Icon="/Navigation/home.png" />
+                <Navigation:NavigationButtonUC Grid.Row="2" DisplayText="Templates" Icon="/Navigation/letter2.png" />
+                <Navigation:NavigationButtonUC Grid.Row="3" DisplayText="User Info" Icon="/Navigation/contact-info.png" />
+            </Grid>
         </Grid>
     </Border>
 </Page>

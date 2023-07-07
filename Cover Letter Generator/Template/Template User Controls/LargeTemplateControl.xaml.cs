@@ -21,7 +21,7 @@ namespace Cover_Letter_Generator.Template.Template_User_Controls
     public partial class LargeTemplateControl : UserControl
     {
         private readonly Template template;
-
+        public event EventHandler<Template> selected;
         public LargeTemplateControl(Template template)
         {
             InitializeComponent();
@@ -32,5 +32,11 @@ namespace Cover_Letter_Generator.Template.Template_User_Controls
         {
             TitleBlock.Text = template.Name;
         }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e) => Background = new SolidColorBrush(Colors.LightGray);
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e) => Background = new SolidColorBrush(Colors.White);
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e) => selected?.Invoke(this, template);
     }
 }

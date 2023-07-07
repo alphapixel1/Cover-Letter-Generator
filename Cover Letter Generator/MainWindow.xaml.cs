@@ -118,7 +118,7 @@ namespace Cover_Letter_Generator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Content = new CoverLetterForm();
+            MainContentFrame.Content = new TemplateSelectionPage();
             NavbarContentFrame.Content = new Navbar();
           /*  string filePath = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx";
 

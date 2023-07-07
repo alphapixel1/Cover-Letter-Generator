@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cover_Letter_Generator.Template.Template_User_Controls"
              mc:Ignorable="d" Loaded="UserControl_Loaded"
-             Height="35" Width="120">
-    <Border BorderBrush="LightGray" BorderThickness="1">
+             Height="35" Width="120" Margin="10,5" Background="White">
+    <Border BorderBrush="LightGray" BorderThickness="1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" IsHitTestVisible="True" Cursor="Hand" MouseDown="Border_MouseDown">
         <Grid>
             <TextBlock x:Name="TitleBlock" Text="Social media marketing Template" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
         </Grid>

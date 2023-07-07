@@ -10,6 +10,11 @@
 
   <ItemGroup>
     <None Remove="navbarButton.png" />
+    <None Remove="Navigation\contact-info.png" />
+    <None Remove="Navigation\home.png" />
+    <None Remove="Navigation\letter.png" />
+    <None Remove="Navigation\letter2.png" />
+    <None Remove="Navigation\menu.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Navigation\navbarButton.png" />
+    <Resource Include="Navigation\contact-info.png" />
+    <Resource Include="Navigation\home.png" />
+    <Resource Include="Navigation\letter.png" />
+    <Resource Include="Navigation\letter2.png" />
+    <Resource Include="Navigation\menu.png" />
   </ItemGroup>
 
   <ItemGroup>

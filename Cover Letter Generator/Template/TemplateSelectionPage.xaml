@@ -6,27 +6,27 @@
       xmlns:local="clr-namespace:Cover_Letter_Generator"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TemplateSelectionPage">
+      Title="TemplateSelectionPage" Loaded="Page_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
         
         <ScrollViewer>
-            <WrapPanel x:Name="TemplateWrap"/>
+            <StackPanel x:Name="TemplateStack" Margin="10,0,0,0"/>
         </ScrollViewer>
         <Grid Grid.Column="1" Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="200"/>
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Border BorderBrush="LightGray" BorderThickness="1">
+            <Border BorderBrush="LightGray" BorderThickness="1" MaxWidth="220">
                 <Image/>
             </Border>
-            <TextBlock Grid.Row="2" Text="None" FontSize="20" Margin="5" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TemplateNameBlock" Grid.Row="2" Text="None" FontSize="20" Margin="5" TextAlignment="Center" TextWrapping="Wrap"/>
             <Button Grid.Row="3" Content="Select" FontSize="17"/>
         </Grid>
     </Grid>
