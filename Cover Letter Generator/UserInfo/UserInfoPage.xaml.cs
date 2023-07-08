@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,17 +49,33 @@ namespace Cover_Letter_Generator.UserInfo
             CityInput.Value = dat.City;
             StateInput.Value = dat.State;
             ZipInput.Value = dat.Zip;
+            CustomReplacements = dat.CustomReplacements;
+            RefreshReplacementListBox();
         }
         public UserInfoPage()
         {
             InitializeComponent();
         }
-
+        private void RefreshReplacementListBox()
+        {
+            ReplacementListBox.ItemsSource = null;
+         ReplacementListBox.ItemsSource = CustomReplacements;
+        }
         private void AddUpdate_Click(object sender, RoutedEventArgs e)
         {
             if(CodeInput.Value.Length>0 && ReplacementInput.Value.Length > 0)
             {
-
+                if(new Regex("[^a-zA-Z0-9]").IsMatch(CodeInput.Value))
+                {
+                    MessageBox.Show("Invalid Inputs", "Code can only contain a-zA-Z0-9 Characters.", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    if (CustomReplacements.ContainsKey(CodeInput.Value))
+                        CustomReplacements.Remove(CodeInput.Value);
+                    CustomReplacements.Add(CodeInput.Value, ReplacementInput.Value);
+                    RefreshReplacementListBox();
+                }
             }
             else
             {
@@ -68,7 +85,11 @@ namespace Cover_Letter_Generator.UserInfo
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-
+            if (CustomReplacements.ContainsKey(CodeInput.Value))
+            {
+                CustomReplacements.Remove(CodeInput.Value);
+                RefreshReplacementListBox();
+            }
         }
     }
 }

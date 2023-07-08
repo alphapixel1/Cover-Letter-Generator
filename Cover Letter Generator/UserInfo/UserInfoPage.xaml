@@ -29,7 +29,7 @@
                 </GroupBox>
                 <GroupBox Header="Custom Data" FontSize="20" BorderThickness="2">
                     <WrapPanel Margin="5,10">
-                        <ListBox Margin="5" Height="150" Width="465"/>
+                        <ListBox x:Name="ReplacementListBox" Margin="5" Height="150" Width="465"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
