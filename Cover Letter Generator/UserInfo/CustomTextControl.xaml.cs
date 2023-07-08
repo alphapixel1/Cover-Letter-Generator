@@ -41,6 +41,7 @@ namespace Cover_Letter_Generator.Form
         {
             InitializeComponent();
         }
+        public string Value { get => Box.Text; set => Box.Text = value; }
 
         private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => IconImage.Opacity = .3;
 

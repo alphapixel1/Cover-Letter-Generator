@@ -16,8 +16,17 @@
     <None Remove="Navigation\menu.png" />
     <None Remove="Navigation\settings.png" />
     <None Remove="UserInfo\email.png" />
+    <None Remove="UserInfo\percent.png" />
+    <None Remove="UserInfo\replace.png" />
+    <None Remove="UserInfo\road.png" />
+    <None Remove="UserInfo\state.png" />
+    <None Remove="UserInfo\street-name.png" />
     <None Remove="UserInfo\telephone.png" />
+    <None Remove="UserInfo\user%281%29.png" />
+    <None Remove="UserInfo\user.png" />
     <None Remove="UserInfo\website.png" />
+    <None Remove="UserInfo\zip-code%281%29.png" />
+    <None Remove="UserInfo\zip-code.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,8 +43,17 @@
     <Resource Include="Navigation\menu.png" />
     <Resource Include="Navigation\settings.png" />
     <Resource Include="UserInfo\email.png" />
+    <Resource Include="UserInfo\percent.png" />
+    <Resource Include="UserInfo\replace.png" />
+    <Resource Include="UserInfo\road.png" />
+    <Resource Include="UserInfo\state.png" />
+    <Resource Include="UserInfo\street-name.png" />
     <Resource Include="UserInfo\telephone.png" />
+    <Resource Include="UserInfo\user(1).png" />
+    <Resource Include="UserInfo\user.png" />
     <Resource Include="UserInfo\website.png" />
+    <Resource Include="UserInfo\zip-code(1).png" />
+    <Resource Include="UserInfo\zip-code.png" />
   </ItemGroup>
 
   <ItemGroup>

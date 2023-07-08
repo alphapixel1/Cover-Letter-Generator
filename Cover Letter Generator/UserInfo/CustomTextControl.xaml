@@ -35,7 +35,7 @@
             <ColumnDefinition Width="24"/>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="LabelBlock" Text="{Binding Label, RelativeSource={RelativeSource AncestorType={x:Type local:CustomTextControl}}}" VerticalAlignment="Center" Margin="0,0,4,0" FontSize="15"/>
-        <TextBox Grid.Column="1" Grid.ColumnSpan="2" GotKeyboardFocus="TextBox_GotKeyboardFocus" LostKeyboardFocus="TextBox_LostKeyboardFocus" Panel.ZIndex="-1" Height="22" Style="{StaticResource CenteredCursorTextBoxStyle}"/>
+        <TextBox x:Name="Box" Grid.Column="1" Grid.ColumnSpan="2" GotKeyboardFocus="TextBox_GotKeyboardFocus" LostKeyboardFocus="TextBox_LostKeyboardFocus" Panel.ZIndex="-1" Height="22" Style="{StaticResource CenteredCursorTextBoxStyle}"/>
         <Image x:Name="IconImage" Grid.Column="2" Margin="3" Width="16" Height="16" Source="{Binding Icon, RelativeSource={RelativeSource AncestorType={x:Type local:CustomTextControl}}}" Panel.ZIndex="100" />
     </Grid>
 </UserControl>

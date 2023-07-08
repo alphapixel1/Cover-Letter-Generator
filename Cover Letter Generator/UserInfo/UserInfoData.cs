@@ -13,6 +13,8 @@ namespace Cover_Letter_Generator.UserInfo
 
         public string Address => $"{Street}, {City}, {State}, {Zip}";
 
+        public Dictionary<string, string> CustomReplacements = new Dictionary<string, string>();
+
         public Dictionary<string, string> Replacements => new Dictionary<string, string>()
         {
             {"%name%",Name},
