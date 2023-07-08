@@ -63,33 +63,48 @@ namespace Cover_Letter_Generator.UserInfo
         }
         private void AddUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if(CodeInput.Value.Length>0 && ReplacementInput.Value.Length > 0)
+            var code = CodeInput.Value.ToLower();
+            var replacement = ReplacementInput.Value;
+            if(code.Length>0 && replacement.Length > 0)
             {
-                if(new Regex("[^a-zA-Z0-9]").IsMatch(CodeInput.Value))
+                if(new Regex("[^a-z0-9]").IsMatch(code))
                 {
-                    MessageBox.Show("Invalid Inputs", "Code can only contain a-zA-Z0-9 Characters.", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Code can only contain a-zA-Z0-9 Characters.", "Invalid Inputs", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    if (CustomReplacements.ContainsKey(CodeInput.Value))
-                        CustomReplacements.Remove(CodeInput.Value);
-                    CustomReplacements.Add(CodeInput.Value, ReplacementInput.Value);
-                    RefreshReplacementListBox();
+                    if (UserInfoData.reservedWords.Keys.Contains(code))
+                    {
+                        MessageBox.Show("Code has already been reserved.", "Reserved Code", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        if (CustomReplacements.ContainsKey(code))
+                            CustomReplacements.Remove(code);
+                        CustomReplacements.Add(code, replacement);
+                        RefreshReplacementListBox();
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Empty Inputs", "Code and Replacement cannot be blank.",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Code and Replacement cannot be blank.", "Empty Inputs", MessageBoxButton.OK,MessageBoxImage.Error);
             }
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            if (CustomReplacements.ContainsKey(CodeInput.Value))
+            var code = CodeInput.Value.ToLower();
+            if (CustomReplacements.ContainsKey(code))
             {
-                CustomReplacements.Remove(CodeInput.Value);
+                CustomReplacements.Remove(code);
                 RefreshReplacementListBox();
             }
+        }
+
+        private void ReservedWords_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
