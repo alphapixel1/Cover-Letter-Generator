@@ -20,6 +20,13 @@ namespace Cover_Letter_Generator.Form
     /// </summary>
     public partial class CustomTextControl : UserControl
     {
+        public static readonly DependencyProperty LabelWidthProperty = DependencyProperty.Register("LabelWidth", typeof(double?), typeof(CustomTextControl), new PropertyMetadata(null));
+        public double? LabelWidth
+        {
+            get { return (double)GetValue(LabelWidthProperty); }
+            set { SetValue(LabelWidthProperty, value); }
+        }
+
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(ImageSource), typeof(CustomTextControl), new PropertyMetadata(null));
         public ImageSource Icon
         {

@@ -106,5 +106,22 @@ namespace Cover_Letter_Generator.UserInfo
         {
             throw new NotImplementedException();
         }
+
+        private void Save_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (UserInfoData.SaveData(GetUserInfoFromForm()))
+            {
+                MessageBox.Show("User Info Saved.", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("User Info was not able to be saved", "Save Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadFromUserInfo(UserInfoData.GetSavedData());
+        }
     }
 }

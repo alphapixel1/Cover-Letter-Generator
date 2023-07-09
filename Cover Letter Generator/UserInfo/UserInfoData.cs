@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Cover_Letter_Generator.StaticClasses;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,9 @@ namespace Cover_Letter_Generator.UserInfo
 {
     internal class UserInfoData
     {
+        public static string UserDataFolder=>FileManager.GetAppDirectory("UserData");
+        public static string UserDataFile => UserDataFolder + "\\UserData.json";
+
         public string Name, Email, PhoneNumber, Website;
         public string Street, City, State, Zip;
 
@@ -27,6 +32,30 @@ namespace Cover_Letter_Generator.UserInfo
             {"%zip%",Zip},
             {"%website%",Website},
         };
+
+        public static UserInfoData GetSavedData()
+        {
+            if(File.Exists(UserDataFile))
+                try
+                {
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<UserInfoData>(File.ReadAllText(UserDataFile));
+                }
+                catch{ Console.WriteLine("Unable to parse UserDataFile"); }
+            return new();
+        }
+        public static bool SaveData(UserInfoData userInfo)
+        {
+            try
+            {
+                File.WriteAllText(UserDataFile,Newtonsoft.Json.JsonConvert.SerializeObject(userInfo));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         public static readonly IReadOnlyDictionary<string, string> reservedWords = new Dictionary<string,string>()
         {

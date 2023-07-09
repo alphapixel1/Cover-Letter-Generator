@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Cover_Letter_Generator"
+      xmlns:local="clr-namespace:Cover_Letter_Generator" xmlns:form="clr-namespace:Cover_Letter_Generator.Form"
       mc:Ignorable="d"  ShowsNavigationUI="False"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CoverLetterForm">
@@ -11,15 +11,26 @@
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition MaxHeight="50"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto" MaxHeight="200"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Job Description"/>
-        <TextBox AcceptsReturn="True" Grid.Row="1"/>
-        <TextBlock Text="GPT Prompt" Grid.Row="2"/>
-        <TextBox AcceptsReturn="True" Grid.Row="3"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Job Description" FontSize="20"/>
+        <TextBox AcceptsReturn="True" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible"/>
+
+        <form:CustomTextControl Grid.Row="2" Label="Company" Icon="/office.png" LabelWidth="64"/>
+        <form:CustomTextControl Grid.Row="3" Label="Recipient" Icon="/user(2).png" LabelWidth="64"/>
+
+
+        <TextBlock Text="GPT Prompt" Grid.Row="2" Grid.Column="2" FontSize="20"/>
+        <TextBox AcceptsReturn="True" Grid.Row="3" Grid.Column="2" VerticalScrollBarVisibility="Visible"/>
+        
         <Button Content="Submit" Grid.Row="4"/>
     </Grid>
 </Page>

@@ -32,6 +32,14 @@ namespace Cover_Letter_Generator.StaticClasses
             return p;
         }
 
+        public static string GetSubFolder(string folder, string subFolderName)
+        {
+            var path = folder + "\\" + subFolderName;
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            return path;
+
+        }
 
         public static string GetVideosFolderPath() => Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
         public static string GetDownloadFolderPath() => Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString();

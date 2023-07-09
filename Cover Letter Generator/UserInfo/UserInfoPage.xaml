@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cover_Letter_Generator.UserInfo" xmlns:form="clr-namespace:Cover_Letter_Generator.Form"
+      Loaded="Page_Loaded"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="800"
       Title="UserInfoPage">
@@ -62,7 +63,7 @@
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>
-        <Border CornerRadius="10" Margin="35,15" Width="55" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderThickness="1" Cursor="Hand" BorderBrush="LightGray">
+        <Border CornerRadius="10" Margin="35,15" Width="55" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderThickness="1" Cursor="Hand" BorderBrush="LightGray" MouseDown="Save_MouseDown">
             <Border.Style>
                 <Style TargetType="Border">
                     <Setter Property="Background" Value="Transparent" />
