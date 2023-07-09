@@ -35,6 +35,7 @@ namespace Cover_Letter_Generator.UserInfo
                 City=CityInput.Value,
                 State=StateInput.Value,
                 Zip=ZipInput.Value,
+                ChatGPTPrompt= GPTPromptBox.Text,
             };
         }
 
@@ -50,6 +51,8 @@ namespace Cover_Letter_Generator.UserInfo
             StateInput.Value = dat.State;
             ZipInput.Value = dat.Zip;
             CustomReplacements = dat.CustomReplacements;
+
+            GPTPromptBox.Text = dat.ChatGPTPrompt;
             RefreshReplacementListBox();
         }
         public UserInfoPage()
@@ -107,7 +110,12 @@ namespace Cover_Letter_Generator.UserInfo
             throw new NotImplementedException();
         }
 
-        private void Save_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadFromUserInfo(UserInfoData.GetSavedData());
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (UserInfoData.SaveData(GetUserInfoFromForm()))
             {
@@ -119,9 +127,10 @@ namespace Cover_Letter_Generator.UserInfo
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            LoadFromUserInfo(UserInfoData.GetSavedData());
+            if(MessageBox.Show("Are you sure you want to reset your info to default.","Reset Info",MessageBoxButton.YesNo,MessageBoxImage.Warning)==MessageBoxResult.Yes)
+                LoadFromUserInfo(new());
         }
     }
 }

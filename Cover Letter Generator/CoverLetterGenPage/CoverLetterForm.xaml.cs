@@ -20,9 +20,20 @@ namespace Cover_Letter_Generator
     /// </summary>
     public partial class CoverLetterForm : Page
     {
+        private UserInfo.UserInfoData Info= UserInfo.UserInfoData.GetSavedData();
         public CoverLetterForm()
         {
             InitializeComponent();
+        }
+
+        private void GenerateCover_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            GptPromptBox.Text = Info.ChatGPTPrompt;
         }
     }
 }

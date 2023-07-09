@@ -18,6 +18,7 @@
     <None Remove="office.png" />
     <None Remove="user%282%29.png" />
     <None Remove="UserInfo\email.png" />
+    <None Remove="UserInfo\grade.png" />
     <None Remove="UserInfo\percent.png" />
     <None Remove="UserInfo\replace.png" />
     <None Remove="UserInfo\road.png" />
@@ -44,9 +45,10 @@
     <Resource Include="Navigation\letter2.png" />
     <Resource Include="Navigation\menu.png" />
     <Resource Include="Navigation\settings.png" />
-    <Resource Include="office.png" />
-    <Resource Include="user(2).png" />
+    <Resource Include="CoverLetterGenPage\office.png" />
+    <Resource Include="CoverLetterGenPage\user%282%29.png" />
     <Resource Include="UserInfo\email.png" />
+    <Resource Include="UserInfo\grade.png" />
     <Resource Include="UserInfo\percent.png" />
     <Resource Include="UserInfo\replace.png" />
     <Resource Include="UserInfo\road.png" />
