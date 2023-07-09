@@ -8,12 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CoverLetterForm">
 
-    <Grid Margin="20">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition MaxHeight="50"/>
+            <RowDefinition MaxHeight="60"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" MaxHeight="200"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,16 +22,24 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Job Description" FontSize="20"/>
-        <TextBox AcceptsReturn="True" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible"/>
+        <TextBlock Text="Job Description" FontSize="20" Margin="5,0"/>
+        <TextBox AcceptsReturn="True" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
 
         <form:CustomTextControl Grid.Row="2" Label="Company" Icon="/office.png" LabelWidth="64"/>
         <form:CustomTextControl Grid.Row="3" Label="Recipient" Icon="/user(2).png" LabelWidth="64"/>
 
+        <Grid Grid.Row="4" Margin="10,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="68"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Template" FontSize="15" Grid.Row="4"/>
+            <Button Content="test" Grid.Column="1" Height="22" BorderBrush="#ABADB3" Background="White"/>
+        </Grid>
 
         <TextBlock Text="GPT Prompt" Grid.Row="2" Grid.Column="2" FontSize="20"/>
-        <TextBox AcceptsReturn="True" Grid.Row="3" Grid.Column="2" VerticalScrollBarVisibility="Visible"/>
-        
-        <Button Content="Submit" Grid.Row="4"/>
+        <TextBox AcceptsReturn="True" Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" VerticalScrollBarVisibility="Visible" Margin="0,0,5,5"/>
+
+        <Button Content="Submit" Grid.Row="5"/>
     </Grid>
 </Page>
