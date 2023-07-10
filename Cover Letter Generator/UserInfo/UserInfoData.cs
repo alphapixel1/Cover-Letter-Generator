@@ -14,7 +14,7 @@ namespace Cover_Letter_Generator.UserInfo
         public static string UserDataFile => UserDataFolder + "\\UserData.json";
 
         public string Name, Email, PhoneNumber, Website,Gpa,
-            Length;//Length is body length for chatGPT
+            Length="4 paragraphs";//Length is body length for chatGPT
         public string Street, City, State, Zip;
 
         public string ChatGPTPrompt =
@@ -48,6 +48,7 @@ Role Description:
             {"%zip%",Zip},
             {"%website%",Website},
             {"%gpa%",Gpa},
+            {"length", Length}
         };
 
         public static UserInfoData GetSavedData()

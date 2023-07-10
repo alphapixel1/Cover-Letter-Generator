@@ -17,6 +17,7 @@
     <None Remove="Navigation\settings.png" />
     <None Remove="office.png" />
     <None Remove="user%282%29.png" />
+    <None Remove="UserInfo\arrows.png" />
     <None Remove="UserInfo\email.png" />
     <None Remove="UserInfo\grade.png" />
     <None Remove="UserInfo\percent.png" />
@@ -47,6 +48,7 @@
     <Resource Include="Navigation\settings.png" />
     <Resource Include="CoverLetterGenPage\office.png" />
     <Resource Include="CoverLetterGenPage\user%282%29.png" />
+    <Resource Include="UserInfo\arrows.png" />
     <Resource Include="UserInfo\email.png" />
     <Resource Include="UserInfo\grade.png" />
     <Resource Include="UserInfo\percent.png" />

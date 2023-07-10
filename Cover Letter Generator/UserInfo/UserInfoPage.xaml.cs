@@ -36,6 +36,7 @@ namespace Cover_Letter_Generator.UserInfo
                 State=StateInput.Value,
                 Zip=ZipInput.Value,
                 ChatGPTPrompt= GPTPromptBox.Text,
+                Length=CoverLengthInput.Value,
             };
         }
 
@@ -51,6 +52,7 @@ namespace Cover_Letter_Generator.UserInfo
             StateInput.Value = dat.State;
             ZipInput.Value = dat.Zip;
             CustomReplacements = dat.CustomReplacements;
+            CoverLengthInput.Value = dat.Length;
 
             GPTPromptBox.Text = dat.ChatGPTPrompt;
             RefreshReplacementListBox();
