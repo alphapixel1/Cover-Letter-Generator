@@ -38,6 +38,15 @@ namespace Cover_Letter_Generator
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            var allReplacements = Info.AllReplacements;
+            
+            if (allReplacements.ContainsKey("company"))
+                CompanyInput.Value = allReplacements["company"];
+            if (allReplacements.ContainsKey("recipient"))
+                RecipientInput.Value = allReplacements["recipient"];
+            if (allReplacements.ContainsKey("jobtitle"))
+                JobTitleInput.Value = allReplacements["jobtitle"];
+
             GptPromptBox.Text = Info.ChatGPTPrompt;
 
             templateScrollView = new()

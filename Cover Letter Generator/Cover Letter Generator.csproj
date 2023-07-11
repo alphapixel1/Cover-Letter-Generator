@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CoverLetterGenPage\briefcase.png" />
     <None Remove="navbarButton.png" />
     <None Remove="Navigation\contact-info.png" />
     <None Remove="Navigation\home.png" />
@@ -41,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="CoverLetterGenPage\briefcase.png" />
     <Resource Include="Navigation\contact-info.png" />
     <Resource Include="Navigation\home.png" />
     <Resource Include="Navigation\letter2.png" />
