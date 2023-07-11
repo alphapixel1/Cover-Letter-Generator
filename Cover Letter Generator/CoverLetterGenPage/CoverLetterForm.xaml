@@ -11,7 +11,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MaxWidth="310"/>
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
@@ -48,7 +48,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Template" FontSize="15" Grid.Row="4"/>
-                        <Button Content="test" Grid.Column="1" Height="22" BorderBrush="#ABADB3" Background="White" Click="TemplateChange_Click"/>
+                        <Button Grid.Column="1" Height="22" BorderBrush="#ABADB3" Background="White" Click="TemplateChange_Click">
+                            <TextBlock Text="None" x:Name="SelectedTemplateBlock" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                        </Button>
                     </Grid>
 
                     <TextBlock Text="GPT Prompt" Grid.Row="3" FontSize="20" Margin="5,0"/>
@@ -59,6 +61,7 @@
                 <Button HorizontalAlignment="Right" Content="Generate Cover" BorderThickness="0" FontSize="15" Background="#EDEDED" Padding="5,0" Click="GenerateCover_Click"/>
             </Grid>
         </Grid>
-        <TextBlock Grid.Column="1" Text="HERE IS WHERE TEMPLATE SELECTION COULD GO"/>
+        <Frame x:Name="TemplateSelectionFrame" Visibility="Hidden" Grid.Column="1" Margin="5,0"/>
+            
     </Grid>
 </Page>

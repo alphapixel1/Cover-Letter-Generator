@@ -1,4 +1,5 @@
 ﻿using Cover_Letter_Generator.CoverLetterGenPage;
+using Cover_Letter_Generator.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace Cover_Letter_Generator
     public partial class CoverLetterForm : Page
     {
         private UserInfo.UserInfoData Info= UserInfo.UserInfoData.GetSavedData();
+        private TemplateScrollView templateScrollView;
+        private Template.Template? SelectedTemplate;
+
         public CoverLetterForm()
         {
             InitializeComponent();
@@ -35,11 +39,27 @@ namespace Cover_Letter_Generator
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             GptPromptBox.Text = Info.ChatGPTPrompt;
+
+            templateScrollView = new();
+            templateScrollView.TemplateSelected += (a, t) => SelectTemplate(t);
+            TemplateSelectionFrame.Content = templateScrollView;
+
+            var templates = TemplateManager.GetTemplates();
+            if(templates!=null && templates.Count>0)
+                SelectTemplate(templates[0]);
+            
         }
+        private void SelectTemplate(Template.Template e)
+        {
+            SelectedTemplate = e;
+            SelectedTemplateBlock.Text = e.Name;
+        }
+        
 
         private void TemplateChange_Click(object sender, RoutedEventArgs e)
         {
-            new TemplateSelectionWindow().ShowDialog();
+            TemplateSelectionFrame.Visibility = TemplateSelectionFrame.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            //new TemplateSelectionWindow().ShowDialog();
         }
     }
 }
