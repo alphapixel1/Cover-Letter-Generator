@@ -118,7 +118,7 @@ namespace Cover_Letter_Generator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Content = new TemplateSelectionPage();
+            MainContentFrame.Content = new CoverLetterForm();
             navbar = new Navbar();
             NavbarContentFrame.Content = navbar;
             navbar.NavigationEvent += Navbar_NavigationEvent;

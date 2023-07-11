@@ -40,7 +40,10 @@ namespace Cover_Letter_Generator
         {
             GptPromptBox.Text = Info.ChatGPTPrompt;
 
-            templateScrollView = new();
+            templateScrollView = new()
+            {
+                MaxWidth = 180
+            };
             templateScrollView.TemplateSelected += (a, t) => SelectTemplate(t);
             TemplateSelectionFrame.Content = templateScrollView;
 
@@ -59,7 +62,7 @@ namespace Cover_Letter_Generator
         private void TemplateChange_Click(object sender, RoutedEventArgs e)
         {
             TemplateSelectionFrame.Visibility = TemplateSelectionFrame.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-            //new TemplateSelectionWindow().ShowDialog();
+           // new TemplateSelectionWindow().ShowDialog();
         }
     }
 }

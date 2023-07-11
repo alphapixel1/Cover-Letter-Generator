@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Cover_Letter_Generator" xmlns:form="clr-namespace:Cover_Letter_Generator.Form"
+      xmlns:local="clr-namespace:Cover_Letter_Generator" xmlns:form="clr-namespace:Cover_Letter_Generator.Form" xmlns:template="clr-namespace:Cover_Letter_Generator.Template"
       mc:Ignorable="d"  ShowsNavigationUI="False"
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
@@ -11,7 +11,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="auto" MaxWidth="310"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
@@ -22,13 +22,13 @@
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition MaxHeight="80"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto" MaxHeight="200"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                    
+
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Job Description" FontSize="20" Margin="5,0"/>
-                    <TextBox AcceptsReturn="True" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
+                    <TextBox AcceptsReturn="True" Height="100" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
 
                     <form:CustomTextControl Grid.Row="2" Label="Company" Icon="/CoverLetterGenPage/office.png" LabelWidth="64"/>
                     <form:CustomTextControl Grid.Row="2" Grid.Column="2" Label="Recipient" Icon="/CoverLetterGenPage/user(2).png" LabelWidth="64"/>
@@ -53,7 +53,7 @@
                         </Button>
                     </Grid>
 
-                    <TextBlock Text="GPT Prompt" Grid.Row="3" FontSize="20" Margin="5,0"/>
+                    <TextBlock Text="GPT Prompt" Grid.Row="3" FontSize="18" VerticalAlignment="Center" Margin="5,0"/>
                     <TextBox x:Name="GptPromptBox" Height="100" AcceptsReturn="True" Grid.Row="4" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="0,0,5,5"/>
                 </Grid>
             </ScrollViewer>
@@ -61,7 +61,7 @@
                 <Button HorizontalAlignment="Right" Content="Generate Cover" BorderThickness="0" FontSize="15" Background="#EDEDED" Padding="5,0" Click="GenerateCover_Click"/>
             </Grid>
         </Grid>
-        <Frame x:Name="TemplateSelectionFrame" Visibility="Hidden" Grid.Column="1" Margin="5,0"/>
-            
+        <Frame Grid.Column="1" x:Name="TemplateSelectionFrame" Visibility="Collapsed"  Margin="5,0"/>
+
     </Grid>
 </Page>
