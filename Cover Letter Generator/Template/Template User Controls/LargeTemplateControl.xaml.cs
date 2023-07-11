@@ -20,8 +20,22 @@ namespace Cover_Letter_Generator.Template.Template_User_Controls
     /// </summary>
     public partial class LargeTemplateControl : UserControl
     {
+        private static SolidColorBrush selectedColor = new SolidColorBrush(Color.FromRgb(165, 229, 255));
+        private bool selected = false;
+        public bool Selected 
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                if (value)
+                    Background = selectedColor;
+                else
+                    Background = new SolidColorBrush(Colors.White);
+            }
+        }
         private readonly Template template;
-        public event EventHandler<Template> selected;
+        public event EventHandler<Template>? SelectedEvent;
         public LargeTemplateControl(Template template)
         {
             InitializeComponent();
@@ -35,8 +49,14 @@ namespace Cover_Letter_Generator.Template.Template_User_Controls
 
         private void Border_MouseEnter(object sender, MouseEventArgs e) => Background = new SolidColorBrush(Colors.LightGray);
 
-        private void Border_MouseLeave(object sender, MouseEventArgs e) => Background = new SolidColorBrush(Colors.White);
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (selected)
+                Background = selectedColor;
+            else
+                Background = new SolidColorBrush(Colors.White);
+        }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e) => selected?.Invoke(this, template);
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e) => SelectedEvent?.Invoke(this, template);
     }
 }

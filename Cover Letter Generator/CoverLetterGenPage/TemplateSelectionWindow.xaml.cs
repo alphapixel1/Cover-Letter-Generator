@@ -19,6 +19,7 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
     /// </summary>
     public partial class TemplateSelectionWindow : Window
     {
+        public Template.Template? SelectedTemplate=null;
         public TemplateSelectionWindow()
         {
             InitializeComponent();
@@ -27,7 +28,14 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var tsv= new Template.TemplateScrollView();
+            tsv.TemplateSelected += Tsv_TemplateSelected;
             MainFrame.Content = tsv;
+        }
+
+        private void Tsv_TemplateSelected(object? sender, Template.Template e)
+        {
+            SelectedTemplateBlock.Text = e.Name;
+            SelectedTemplate = e;
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Cover_Letter_Generator.Template
     public partial class TemplateScrollView : Page
     {
         public event EventHandler<Template> TemplateSelected;
+        private LargeTemplateControl? SelectedTemplate;
         public TemplateScrollView()
         {
             InitializeComponent();
@@ -58,7 +59,14 @@ namespace Cover_Letter_Generator.Template
                         foreach (var temp in item.Value)
                         {
                             var uc = new LargeTemplateControl(temp);
-                            uc.selected += (a, b) => TemplateSelected?.Invoke(this,b);
+                            uc.SelectedEvent += (a, b) =>
+                            {
+                                TemplateSelected?.Invoke(this, b);
+                                uc.Selected = true;
+                                if (SelectedTemplate != null)
+                                    SelectedTemplate.Selected = false;
+                                SelectedTemplate = uc;
+                            };
                             wrap.Children.Add(uc);
                         }
                         TemplateStack.Children.Add(wrap);

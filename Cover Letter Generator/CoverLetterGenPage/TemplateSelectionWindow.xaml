@@ -18,7 +18,16 @@
             <Frame x:Name="MainFrame" Margin="10,0,0,0"/>
         </Border>
         <Grid Grid.Row="2" Margin="5">
-            <Button Content="Select"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="SelectedTemplateBlock" Text="None" FontSize="15" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+            <Button Content="Select" Grid.Column="2"/>
         </Grid>
+        <StackPanel Grid.Row="2" Margin="5">
+          
+        </StackPanel>
     </Grid>
 </Window>
