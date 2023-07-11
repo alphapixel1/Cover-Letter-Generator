@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cover_Letter_Generator.CoverLetterGenPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,11 @@ namespace Cover_Letter_Generator
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             GptPromptBox.Text = Info.ChatGPTPrompt;
+        }
+
+        private void TemplateChange_Click(object sender, RoutedEventArgs e)
+        {
+            new TemplateSelectionWindow().ShowDialog();
         }
     }
 }

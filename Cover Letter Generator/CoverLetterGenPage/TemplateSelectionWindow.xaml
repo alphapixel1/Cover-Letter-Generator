@@ -1,0 +1,24 @@
+﻿<Window x:Class="Cover_Letter_Generator.CoverLetterGenPage.TemplateSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cover_Letter_Generator.CoverLetterGenPage"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="TemplateSelectionWindow" Height="450" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Select A Template" HorizontalAlignment="Center" FontSize="22" Margin="0,0,0,5"/>
+        <Border BorderBrush="LightGray" BorderThickness="0,1,0,1" Grid.Row="1">
+            <Frame x:Name="MainFrame" Margin="10,0,0,0"/>
+        </Border>
+        <Grid Grid.Row="2" Margin="5">
+            <Button Content="Select"/>
+        </Grid>
+    </Grid>
+</Window>
