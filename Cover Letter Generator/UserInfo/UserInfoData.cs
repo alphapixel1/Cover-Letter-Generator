@@ -38,16 +38,16 @@ Role Description:
 
         public Dictionary<string, string> Replacements => new Dictionary<string, string>()
         {
-            {"%name%",Name},
-            {"%email%",Email },
-            {"%phone%",PhoneNumber },
-            {"%address%",Address },
-            {"%street%",Street},
-            {"%city%",City},
-            {"%state%",State},
-            {"%zip%",Zip},
-            {"%website%",Website},
-            {"%gpa%",Gpa},
+            {"name",Name},
+            {"email",Email },
+            {"phone",PhoneNumber },
+            {"address",Address },
+            {"street",Street},
+            {"city",City},
+            {"state",State},
+            {"zip",Zip},
+            {"website",Website},
+            {"gpa",Gpa},
             {"length", Length}
         };
         public Dictionary<string, string> AllReplacements => Replacements.Concat(CustomReplacements).GroupBy(p => p.Key).ToDictionary(g => g.Key, g => g.First().Value);

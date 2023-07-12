@@ -37,6 +37,7 @@ namespace Cover_Letter_Generator.UserInfo
                 Zip=ZipInput.Value,
                 ChatGPTPrompt= GPTPromptBox.Text,
                 Length=CoverLengthInput.Value,
+                Gpa=GpaInput.Value
             };
         }
 
@@ -46,6 +47,7 @@ namespace Cover_Letter_Generator.UserInfo
             PhoneInput.Value = dat.PhoneNumber;
             EmailInput.Value = dat.Email;
             WebsiteInput.Value = dat.Website;
+            GpaInput.Value = dat.Gpa;
 
             StreetInput.Value = dat.Street;
             CityInput.Value = dat.City;

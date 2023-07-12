@@ -33,7 +33,12 @@ namespace Cover_Letter_Generator
 
         private void GenerateCover_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SelectedTemplate == null)
+            {
+                MessageBox.Show("A Template Must Be Selected", "No Template", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            ChatGPT.GPTUserInfoDocGenerator.Generate(Info,SelectedTemplate,CompanyInput.Value,RecipientInput.Value, DescriptionBox.Text,GptPromptBox.Text);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

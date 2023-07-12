@@ -37,6 +37,10 @@ namespace Cover_Letter_Generator.ChatGPT
             {
                 prompt=prompt.Replace($"%{termReplacement.Key}%", termReplacement.Value);
             }
+            Console.WriteLine(prompt);
+            var resp = await ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key, prompt);
+            Console.WriteLine("\n\n response:");
+            Console.WriteLine(resp);
 
             //ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key,)
         }

@@ -37,7 +37,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Job Description" FontSize="20" Margin="5,0"/>
-                    <TextBox AcceptsReturn="True" Text="add company, jobtitle and recipient to userinfo so it has a changeable default value" Height="100" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
+                    <TextBox x:Name="DescriptionBox" AcceptsReturn="True" Text="add company, jobtitle and recipient to userinfo so it has a changeable default value" Height="100" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
 
                     <form:CustomTextControl Grid.Row="2" x:Name="CompanyInput" Label="Company" Icon="/CoverLetterGenPage/office.png" LabelWidth="64"/>
                     <form:CustomTextControl Grid.Row="2" x:Name="RecipientInput" Grid.Column="2" Label="Recipient" Icon="/CoverLetterGenPage/user(2).png" LabelWidth="64"/>
