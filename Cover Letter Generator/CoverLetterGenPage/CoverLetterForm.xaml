@@ -13,6 +13,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -24,7 +25,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto" MaxHeight="200"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -36,14 +37,12 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Job Description" FontSize="20" Margin="5,0"/>
-                    <TextBox x:Name="DescriptionBox" AcceptsReturn="True" Text="add company, jobtitle and recipient to userinfo so it has a changeable default value" Height="100" Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
 
-                    <form:CustomTextControl Grid.Row="2" x:Name="CompanyInput" Label="Company" Icon="/CoverLetterGenPage/office.png" LabelWidth="64"/>
-                    <form:CustomTextControl Grid.Row="2" x:Name="RecipientInput" Grid.Column="2" Label="Recipient" Icon="/CoverLetterGenPage/user(2).png" LabelWidth="64"/>
+                    <form:CustomTextControl Grid.Row="0" x:Name="CompanyInput" Label="Company" Icon="/CoverLetterGenPage/office.png" LabelWidth="64"/>
+                    <form:CustomTextControl Grid.Row="0" x:Name="RecipientInput" Grid.Column="2" Label="Recipient" Icon="/CoverLetterGenPage/user(2).png" LabelWidth="64"/>
 
-                    <form:CustomTextControl Grid.Row="3" x:Name="JobTitleInput" Grid.Column="0" Label="Job Title" Icon="/CoverLetterGenPage/briefcase.png" LabelWidth="64"/>
-                    <Grid Grid.Row="3" Grid.Column="4" Margin="10,5">
+                    <form:CustomTextControl Grid.Row="1" x:Name="JobTitleInput" Grid.Column="0" Label="Job Title" Icon="/CoverLetterGenPage/briefcase.png" LabelWidth="64"/>
+                    <Grid Grid.Row="1" Grid.Column="2" Margin="10,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="68"/>
                             <ColumnDefinition/>
@@ -54,15 +53,23 @@
                         </Button>
                     </Grid><!--Template Selector-->
 
+                    <TextBlock Text="Job Description" Grid.Row="2" FontSize="20" Margin="5,0"/>
+                    <TextBox x:Name="DescriptionBox" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Text="add company, jobtitle and recipient to userinfo so it has a changeable default value" Height="100" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
+
                     <TextBlock Text="GPT Prompt" Grid.Row="4" FontSize="18" VerticalAlignment="Center" Margin="5,0"/>
-                    <TextBox x:Name="GptPromptBox" Height="100" AcceptsReturn="True" Grid.Row="5" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="0,0,5,5"/>
+                    <TextBox x:Name="GptPromptBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="5" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="0,0,5,5"/>
                 </Grid>
             </ScrollViewer>
             <Grid Background="#EDEDED" Grid.Row="1">
-                <Button HorizontalAlignment="Right" Content="Generate Cover" BorderThickness="0" FontSize="15" Background="#EDEDED" Padding="5,0" Click="GenerateCover_Click"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Preview Generated Prompt" FontSize="12" BorderThickness="0" Padding="5,0" Background="#EDEDED" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5,0"/>
+                <Button Grid.Column="2" HorizontalAlignment="Right" Content="Generate Cover" BorderThickness="0" FontSize="15" Background="#EDEDED" Padding="5,0" Click="GenerateCover_Click"/>
             </Grid>
         </Grid>
         <Frame Grid.Column="1" x:Name="TemplateSelectionFrame" Visibility="Collapsed"  Margin="5,0"/>
-
     </Grid>
 </Page>

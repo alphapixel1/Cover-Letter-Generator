@@ -22,12 +22,29 @@ namespace Cover_Letter_Generator
     /// </summary>
     public partial class CoverLetterForm : Page
     {
+        public class RecoveryClass
+        {
+            public string Recipient, Company, JobTitle,Description,GptPrompt;
+            public Template.Template Template;
+        }
         private UserInfo.UserInfoData Info= UserInfo.UserInfoData.GetSavedData();
         private TemplateScrollView templateScrollView;
         private Template.Template? SelectedTemplate;
+        //private ReviewGPTResponse? ReviewGPTResponsePage;
+        private RecoveryClass? recovery;
 
-        public CoverLetterForm()
+        private Frame OwnerFrame;
+
+        public CoverLetterForm(Frame ownerFrame)
         {
+            InitializeComponent();
+            OwnerFrame = ownerFrame;
+        }
+
+        public CoverLetterForm(RecoveryClass recovery, Frame ownerFrame)
+        {
+            this.recovery = recovery;
+            this.OwnerFrame = ownerFrame;
             InitializeComponent();
         }
 
@@ -38,21 +55,59 @@ namespace Cover_Letter_Generator
                 MessageBox.Show("A Template Must Be Selected", "No Template", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            ChatGPT.GPTUserInfoDocGenerator.Generate(Info,SelectedTemplate,CompanyInput.Value,RecipientInput.Value, DescriptionBox.Text,GptPromptBox.Text);
+            this.IsEnabled = false;
+            Generate();
+            
         }
+        private async void Generate()
+        {
+            var r=await ChatGPT.GPTUserInfoDocGenerator.Generate(Info, CompanyInput.Value, RecipientInput.Value, DescriptionBox.Text, GptPromptBox.Text);
+            Application.Current.Dispatcher.Invoke(()=>{ 
+                IsEnabled = true;
+                if(r == null)
+                {
+                    MessageBox.Show("Unable to get a response from ChatGPT", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    
+                    OwnerFrame.Content= new ReviewGPTResponse(r, new RecoveryClass()
+                    {
+                        Company=CompanyInput.Value,
+                        Recipient=RecipientInput.Value,
+                        Description=DescriptionBox.Text,
+                        GptPrompt=GptPromptBox.Text,
+                        JobTitle=JobTitleInput.Value,
+                        Template=SelectedTemplate,
+                    },OwnerFrame);
+                }
+            });
 
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var allReplacements = Info.AllReplacements;
-            
-            if (allReplacements.ContainsKey("company"))
-                CompanyInput.Value = allReplacements["company"];
-            if (allReplacements.ContainsKey("recipient"))
-                RecipientInput.Value = allReplacements["recipient"];
-            if (allReplacements.ContainsKey("jobtitle"))
-                JobTitleInput.Value = allReplacements["jobtitle"];
+            if (recovery != null)
+            {
+                CompanyInput.Value=recovery.Company;
+                RecipientInput.Value = recovery.Recipient;
+                JobTitleInput.Value = recovery.JobTitle;
+                DescriptionBox.Text = recovery.Description;
+                GptPromptBox.Text = recovery.GptPrompt;
+                SelectTemplate(recovery.Template);
+            }
+            else
+            {
+                var allReplacements = Info.AllReplacements;
 
-            GptPromptBox.Text = Info.ChatGPTPrompt;
+                if (allReplacements.ContainsKey("company"))
+                    CompanyInput.Value = allReplacements["company"];
+                if (allReplacements.ContainsKey("recipient"))
+                    RecipientInput.Value = allReplacements["recipient"];
+                if (allReplacements.ContainsKey("jobtitle"))
+                    JobTitleInput.Value = allReplacements["jobtitle"];
+
+                GptPromptBox.Text = Info.ChatGPTPrompt;
+            }
 
             templateScrollView = new()
             {
@@ -62,7 +117,7 @@ namespace Cover_Letter_Generator
             TemplateSelectionFrame.Content = templateScrollView;
 
             var templates = TemplateManager.GetTemplates();
-            if(templates!=null && templates.Count>0)
+            if(templates!=null && templates.Count>0 && SelectedTemplate==null)
                 SelectTemplate(templates[0]);
             
         }

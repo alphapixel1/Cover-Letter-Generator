@@ -37,7 +37,8 @@ namespace Cover_Letter_Generator.UserInfo
                 Zip=ZipInput.Value,
                 ChatGPTPrompt= GPTPromptBox.Text,
                 Length=CoverLengthInput.Value,
-                Gpa=GpaInput.Value
+                Gpa=GpaInput.Value,
+                SkillsAboutMe= SkillsAboutMeBox.Text,
             };
         }
 

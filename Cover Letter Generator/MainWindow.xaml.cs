@@ -35,6 +35,9 @@ namespace Cover_Letter_Generator
             TemplateManager.InitialSetup();
             InitializeComponent();
             //CreateDocument();
+
+            return;
+
             UserInfo.UserInfoData info = new()
             {
                 PhoneNumber = "513-867-5309",
@@ -118,7 +121,7 @@ namespace Cover_Letter_Generator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Content = new CoverLetterForm();
+            MainContentFrame.Content = new CoverLetterForm(MainContentFrame);
             navbar = new Navbar();
             NavbarContentFrame.Content = navbar;
             navbar.NavigationEvent += Navbar_NavigationEvent;
@@ -126,7 +129,7 @@ namespace Cover_Letter_Generator
 
         private void Navbar_NavigationEvent(object? sender, Navigation.NavigationPage e)
         {
-            MainContentFrame.Content = Navigation.NavigationPages.GetPage(e);
+            MainContentFrame.Content = Navigation.NavigationPages.GetPage(e,MainContentFrame);
         }
     }
 }

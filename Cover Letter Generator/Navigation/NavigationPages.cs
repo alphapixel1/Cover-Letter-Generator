@@ -13,12 +13,12 @@ namespace Cover_Letter_Generator.Navigation
     }
     internal class NavigationPages
     {
-        public static Page GetPage(NavigationPage page)
+        public static Page GetPage(NavigationPage page,Frame frame)
         {
             switch (page)
             {
                 case NavigationPage.CoverCreator:
-                    return new CoverLetterForm();
+                    return new CoverLetterForm(frame);
                 case NavigationPage.Settings:
                     return null;
                 case NavigationPage.UserInfo:
