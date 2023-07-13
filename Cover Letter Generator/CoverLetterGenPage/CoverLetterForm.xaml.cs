@@ -22,7 +22,7 @@ namespace Cover_Letter_Generator
     /// </summary>
     public partial class CoverLetterForm : Page
     {
-        public class RecoveryClass
+        public class PageRecoveryClass
         {
             public string Recipient, Company, JobTitle,Description,GptPrompt;
             public Template.Template Template;
@@ -31,7 +31,7 @@ namespace Cover_Letter_Generator
         private TemplateScrollView templateScrollView;
         private Template.Template? SelectedTemplate;
         //private ReviewGPTResponse? ReviewGPTResponsePage;
-        private RecoveryClass? recovery;
+        private PageRecoveryClass? recovery;
 
         private Frame OwnerFrame;
 
@@ -41,7 +41,7 @@ namespace Cover_Letter_Generator
             OwnerFrame = ownerFrame;
         }
 
-        public CoverLetterForm(RecoveryClass recovery, Frame ownerFrame)
+        public CoverLetterForm(PageRecoveryClass recovery, Frame ownerFrame)
         {
             this.recovery = recovery;
             this.OwnerFrame = ownerFrame;
@@ -71,7 +71,7 @@ namespace Cover_Letter_Generator
                 else
                 {
                     
-                    OwnerFrame.Content= new ReviewGPTResponse(r, new RecoveryClass()
+                    OwnerFrame.Content= new ReviewGPTResponse(r, new PageRecoveryClass()
                     {
                         Company=CompanyInput.Value,
                         Recipient=RecipientInput.Value,
@@ -132,6 +132,21 @@ namespace Cover_Letter_Generator
         {
             TemplateSelectionFrame.Visibility = TemplateSelectionFrame.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
            // new TemplateSelectionWindow().ShowDialog();
+        }
+
+        private void PreviewPrompt_Click(object sender, RoutedEventArgs e)
+        {
+            OwnerFrame.Content = new ReviewGPTResponse(
+                ChatGPT.GPTUserInfoDocGenerator.GetPrompt(Info,CompanyInput.Value,RecipientInput.Value,DescriptionBox.Text,GptPromptBox.Text).GptResponse,
+                new PageRecoveryClass()
+            {
+                Company = CompanyInput.Value,
+                Recipient = RecipientInput.Value,
+                Description = DescriptionBox.Text,
+                GptPrompt = GptPromptBox.Text,
+                JobTitle = JobTitleInput.Value,
+                Template = SelectedTemplate,
+            }, OwnerFrame);
         }
     }
 }

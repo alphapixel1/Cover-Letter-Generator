@@ -23,7 +23,7 @@
         <ScrollViewer Grid.Row="2" Margin="20,7">
             <TextBox AcceptsReturn="True" x:Name="ResponseBox" TextWrapping="Wrap"/>
         </ScrollViewer>
-        <Menu Grid.Row="3" FlowDirection="RightToLeft">
+        <Menu Grid.Row="3" FlowDirection="RightToLeft" x:Name="ContinueMenuBar">
             <MenuItem Header="Continue" FlowDirection="LeftToRight"/>
         </Menu>
     </Grid>

@@ -66,7 +66,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Preview Generated Prompt" FontSize="12" BorderThickness="0" Padding="5,0" Background="#EDEDED" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5,0"/>
+                <Button Grid.Column="0" Content="Preview Generated Prompt" FontSize="12" BorderThickness="0" Padding="5,0" Background="#EDEDED" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5,0" Click="PreviewPrompt_Click"/>
                 <Button Grid.Column="2" HorizontalAlignment="Right" Content="Generate Cover" BorderThickness="0" FontSize="15" Background="#EDEDED" Padding="5,0" Click="GenerateCover_Click"/>
             </Grid>
         </Grid>

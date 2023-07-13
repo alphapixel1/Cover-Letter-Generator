@@ -38,10 +38,12 @@ namespace Cover_Letter_Generator.ChatGPT
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    dynamic responseData = JsonConvert.DeserializeObject(responseContent);
-
-                    var chatResponse = responseData.choices[0].message.content;
-                    return chatResponse;
+                    File.WriteAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\ChatGPT\ChatGptResponse.json", responseContent);
+                  //  dynamic responseData = JsonConvert.DeserializeObject(responseContent);
+                    ChatGptResponse? chaTGptResponse = JsonConvert.DeserializeObject<ChatGptResponse>(responseContent);
+                    return chaTGptResponse.choices[0].message.content;
+                    //var chatResponse = responseData.choices[0].message.content;
+                    //return chatResponse;
                 }
                 else
                 {
