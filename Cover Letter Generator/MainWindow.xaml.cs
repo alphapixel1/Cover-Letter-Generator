@@ -35,7 +35,7 @@ namespace Cover_Letter_Generator
             TemplateManager.InitialSetup();
             InitializeComponent();
             //CreateDocument();
-
+            gptAsync();
             return;
 
             UserInfo.UserInfoData info = new()
@@ -79,17 +79,16 @@ namespace Cover_Letter_Generator
      
         private async Task gptAsync()
         {
-            try
-            {
-                var resp = await ChatGPT.ChatGPT_API.GetChatGPTResponse(ChatGPT.ChatGPT_API.Key, "write me a cover letter for this company,I do not want the response to include a greeting or a signature , here are the details: \n" + File.ReadAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\job description.txt"));
-                Console.WriteLine(resp);
+            
+            var resp = await ChatGPT.ChatGPT_API.GetChatGPTResponse(ChatGPT.ChatGPT_API.Key, "take this number: 10");
+            Console.WriteLine(resp.GetLastMessage());
+            await ChatGPT.ChatGPT_API.GetChatGPTResponse(ChatGPT.ChatGPT_API.Key, "Now add 5", resp);
+            Console.WriteLine(resp.GetLastMessage());
+            await ChatGPT.ChatGPT_API.GetChatGPTResponse(ChatGPT.ChatGPT_API.Key, "Now add 7", resp);
+            Console.WriteLine(resp.GetLastMessage());
 
-                Console.WriteLine("Done");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Done");
+            
         }
 
         private void CreateDocument()

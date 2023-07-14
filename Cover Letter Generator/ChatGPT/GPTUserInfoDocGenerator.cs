@@ -13,14 +13,24 @@ namespace Cover_Letter_Generator.ChatGPT
         public class ModifiedUserInfoAndGptResponse
         {
             public Dictionary<string, string> Replacements;
-            public string? GptResponse;
-            public ModifiedUserInfoAndGptResponse(Dictionary<string,string> replacements,string? gptResponse)
+            public ChatGptResponse? GptResponse;
+            public ModifiedUserInfoAndGptResponse(Dictionary<string,string> replacements, ChatGptResponse? gptResponse)
             {
                 Replacements = replacements;
                 GptResponse = gptResponse;
             }
         }
-        public static ModifiedUserInfoAndGptResponse GetPrompt(UserInfoData userInfo, string company, string recipient, string jobDescription, string gptPrompt)
+        public class Prompt
+        {
+            public string PromptText;
+            public Dictionary<string, string> Replacements;
+            public Prompt(Dictionary<string, string> replacements, string prompt)
+            {
+                Replacements = replacements;
+                this.PromptText = prompt;
+            }
+        }
+        public static Prompt GetPrompt(UserInfoData userInfo, string company, string recipient, string jobDescription, string gptPrompt)
         {
             var replacements = userInfo.AllReplacements;
 
@@ -49,14 +59,14 @@ namespace Cover_Letter_Generator.ChatGPT
             }
             return new(replacements,prompt);
         }
-        public async static Task<ModifiedUserInfoAndGptResponse?> Generate(UserInfoData userInfo,string company,string recipient, string jobDescription,string gptPrompt)
+       /* public async static Task<ModifiedUserInfoAndGptResponse?> Generate(UserInfoData userInfo,string company,string recipient, string jobDescription,string gptPrompt)
         {
             var prompt = GetPrompt(userInfo, company, recipient, jobDescription, gptPrompt);
             Console.WriteLine(prompt);
-            string? resp = null;
+            ChatGptResponse? resp = null;
             try
             {
-                resp = await ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key, prompt.GptResponse);//im using gptresponse because the class fits just the name doesn't
+                resp = (await ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key, prompt.PromptText));
             }
             catch(Exception e)
             {
@@ -67,13 +77,13 @@ namespace Cover_Letter_Generator.ChatGPT
             Console.WriteLine(resp);
             if (resp == null)
                 return null;
-            resp = new Regex(@"^(\s*\[[^\]]+\])+").Replace(resp, "");
+            resp = new Regex(@"^(\s*\[[^\]]+\])+").Replace(resp.la, "");
             Regex manager = new Regex(@"^\s*Dear Hiring Manager,\s*");
             Regex sincierely = new Regex(@"\s*Sincerely,\s*\[Your Name]\s*");
             resp = manager.Replace(resp, "");
             resp = sincierely.Replace(resp, "");
             return new(prompt.Replacements,resp);
             //ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key,)
-        }
+        }*/
     }
 }

@@ -1,0 +1,40 @@
+﻿<Page x:Class="Cover_Letter_Generator.CoverLetterGenPage.InitialResponseModifcationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cover_Letter_Generator.CoverLetterGenPage"
+      mc:Ignorable="d"  Loaded="Page_Loaded"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InitialResponseModifcationPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height=".3*" MaxHeight="150"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Back" Click="Back_Click"/>
+        </Menu>
+        <TextBlock Text="Chat GPT Response" HorizontalAlignment="Center" FontSize="18" Grid.Row="1"/>
+        
+        <TextBox Grid.Row="2" Margin="20,7" AcceptsReturn="True" x:Name="ResponseBox" TextWrapping="Wrap" Text="this page is going to allow the user to send new messages to gpt to tweak it more" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
+        
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <TextBlock Text="Prompt" FontSize="18" Margin="21,0,0,0"/>
+            <TextBlock Text="This is where you ask ChatGPT to tweak what it has given you." Margin="10,3,0,0" VerticalAlignment="Center" FontSize="10"/>
+        </StackPanel>
+        
+        <TextBox Grid.Row="4" Margin="20,7" AcceptsReturn="True" x:Name="PromptBox" TextWrapping="Wrap" Text="this page is going to allow the user to send new messages to gpt to tweak it more" VerticalScrollBarVisibility="Visible"/>
+        
+        
+        <Menu Grid.Row="5" FlowDirection="RightToLeft" x:Name="ContinueMenuBar">
+            <MenuItem Header="Next Step" FlowDirection="LeftToRight"/>
+            <MenuItem Header="Submit Prompt" FlowDirection="LeftToRight" Click="SubmitPrompt_Click"/>
+        </Menu>
+    </Grid>
+</Page>

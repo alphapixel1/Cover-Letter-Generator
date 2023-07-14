@@ -45,7 +45,7 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         {
             if (Response != null)
             {
-                ResponseBox.Text = Response.GptResponse;
+                ResponseBox.Text = prompt;
             }
             else
             {

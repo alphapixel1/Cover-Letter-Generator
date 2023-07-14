@@ -61,17 +61,18 @@ namespace Cover_Letter_Generator
         }
         private async void Generate()
         {
-            var r=await ChatGPT.GPTUserInfoDocGenerator.Generate(Info, CompanyInput.Value, RecipientInput.Value, DescriptionBox.Text, GptPromptBox.Text);
+            ChatGPT.GPTUserInfoDocGenerator.Prompt prompt =ChatGPT.GPTUserInfoDocGenerator.GetPrompt(Info, CompanyInput.Value, RecipientInput.Value, DescriptionBox.Text, GptPromptBox.Text);
+            var response = await ChatGPT.ChatGPT_API.GetChatGPTResponse(ChatGPT.ChatGPT_API.Key, prompt.PromptText);
             Application.Current.Dispatcher.Invoke(()=>{ 
                 IsEnabled = true;
-                if(r == null)
+                if(response == null)
                 {
                     MessageBox.Show("Unable to get a response from ChatGPT", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
                     
-                    OwnerFrame.Content= new ReviewGPTResponse(r, new PageRecoveryClass()
+                    OwnerFrame.Content= new InitialResponseModifcationPage(prompt, new PageRecoveryClass()
                     {
                         Company=CompanyInput.Value,
                         Recipient=RecipientInput.Value,
@@ -79,7 +80,9 @@ namespace Cover_Letter_Generator
                         GptPrompt=GptPromptBox.Text,
                         JobTitle=JobTitleInput.Value,
                         Template=SelectedTemplate,
-                    },OwnerFrame);
+                    },
+                    OwnerFrame,
+                    response);
                 }
             });
 
@@ -137,7 +140,7 @@ namespace Cover_Letter_Generator
         private void PreviewPrompt_Click(object sender, RoutedEventArgs e)
         {
             OwnerFrame.Content = new ReviewGPTResponse(
-                ChatGPT.GPTUserInfoDocGenerator.GetPrompt(Info,CompanyInput.Value,RecipientInput.Value,DescriptionBox.Text,GptPromptBox.Text).GptResponse,
+                ChatGPT.GPTUserInfoDocGenerator.GetPrompt(Info,CompanyInput.Value,RecipientInput.Value,DescriptionBox.Text,GptPromptBox.Text).PromptText,
                 new PageRecoveryClass()
             {
                 Company = CompanyInput.Value,

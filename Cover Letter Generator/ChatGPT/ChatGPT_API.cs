@@ -12,47 +12,68 @@ namespace Cover_Letter_Generator.ChatGPT
     internal class ChatGPT_API
     {
         public static string Key => File.ReadAllText(@"C:\Users\Nick\Desktop\gptSecret.txt");
-        public static async Task<string> GetChatGPTResponse(string apiKey, string message)
+        public static async Task<ChatGptResponse?> GetChatGPTResponse(string apiKey, string message, ChatGptResponse? conversation=null)
         {
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
-
-                var requestBody = new
+                object requestBody;
+                if (conversation != null)
                 {
-                    messages = new[]
+                    conversation.AddMessage(new() { role = "system", content = message });
+                   requestBody=conversation.GetRequestBody();
+                }
+                else
+                {
+                    requestBody = new
                     {
+                        messages = new[]
+                       {
                         new
                         {
                             role = "system",
                             content = message
                         }
                     },
-                    model = "gpt-3.5-turbo"
-                };
-
-                var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
-
+                        model = "gpt-3.5-turbo",
+                    };
+                }
+                
+                string string_content = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(string_content, Encoding.UTF8, "application/json");
+            //    Console.WriteLine(string_content);
                 var response = await client.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
+                //    Console.WriteLine(responseContent);
                     File.WriteAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\ChatGPT\ChatGptResponse.json", responseContent);
                   //  dynamic responseData = JsonConvert.DeserializeObject(responseContent);
-                    ChatGptResponse? chaTGptResponse = JsonConvert.DeserializeObject<ChatGptResponse>(responseContent);
-                    return chaTGptResponse.choices[0].message.content;
-                    //var chatResponse = responseData.choices[0].message.content;
-                    //return chatResponse;
+                    ChatGptResponse? chatGptResponse = JsonConvert.DeserializeObject<ChatGptResponse>(responseContent);
+                    if (conversation != null)
+                    {
+                        conversation.AddMessage(chatGptResponse.GetLastMessage());
+                        return conversation;
+                    }
+                    else
+                    {
+                        chatGptResponse.choices.Insert(0, new() { index = 0, message = new() { role = "system", content = message } });
+                    }
+                    return chatGptResponse;
                 }
                 else
                 {
                     //handle error
+                    
                     var errorResponseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("ChatGPT.ChatGPT_API error: ");
+                    Console.WriteLine(errorResponseContent);
                     throw new Exception($"Failed to get ChatGPT response. API returned an error. Error message: {errorResponseContent}");
                 }
 
             }
         }
+
     }
 }
