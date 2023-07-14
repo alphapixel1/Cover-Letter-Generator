@@ -21,9 +21,13 @@
             <MenuItem Header="Back" Click="Back_Click"/>
         </Menu>
         <TextBlock Text="Chat GPT Response" HorizontalAlignment="Center" FontSize="18" Grid.Row="1"/>
-        
-        <TextBox Grid.Row="2" Margin="20,7" AcceptsReturn="True" x:Name="ResponseBox" TextWrapping="Wrap" Text="this page is going to allow the user to send new messages to gpt to tweak it more" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
-        
+
+        <Border Grid.Row="2" Margin="20,7" BorderBrush="LightGray" BorderThickness="1">
+        <ScrollViewer>
+            <StackPanel x:Name="MessageHistoryStack"/>
+        </ScrollViewer>
+        </Border>
+
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <TextBlock Text="Prompt" FontSize="18" Margin="21,0,0,0"/>
             <TextBlock Text="This is where you ask ChatGPT to tweak what it has given you." Margin="10,3,0,0" VerticalAlignment="Center" FontSize="10"/>

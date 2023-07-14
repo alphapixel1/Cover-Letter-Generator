@@ -56,8 +56,12 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         }
         private void RefreshMessages()
         {
-            ResponseBox.Text=string.Join("\n\n"+new string('=',50)+"\n\n",response.choices.Select(e => $"{e.message.role.Substring(0, 1).ToUpperInvariant()}{e.message.role.Substring(1)}:\n\n"+e.message.content).ToList());
-            ResponseBox.ScrollToEnd();
+            MessageHistoryStack.Children.Clear();
+            foreach (var item in response.choices)
+            {
+                MessageHistoryStack.Children.Add(new ChatGPTMessageControl(item.message));
+            }
+            ((ScrollViewer)MessageHistoryStack.Parent).ScrollToEnd();
         }
         private async void SendPromptAsync()
         {

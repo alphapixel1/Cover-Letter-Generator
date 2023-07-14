@@ -85,5 +85,15 @@ namespace Cover_Letter_Generator.ChatGPT
             return new(prompt.Replacements,resp);
             //ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key,)
         }*/
+
+        public static string GetTextWithoutHeaders(string message)
+        {
+            message = new Regex(@"^(\s*\[[^\]]+\])+").Replace(message, "");
+            Regex manager = new Regex(@"^\s*Dear Hiring Manager,\s*");
+            Regex sincierely = new Regex(@"\s*Sincerely,\s*\[Your Name]\s*");
+            message = manager.Replace(message, "");
+            message = sincierely.Replace(message, "");
+            return message;
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Cover_Letter_Generator
             TemplateManager.InitialSetup();
             InitializeComponent();
             //CreateDocument();
-            gptAsync();
+           /// gptAsync();
             return;
 
             UserInfo.UserInfoData info = new()
@@ -120,7 +120,15 @@ namespace Cover_Letter_Generator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Content = new CoverLetterForm(MainContentFrame);
+            MainContentFrame.Content = new CoverLetterForm(new CoverLetterForm.PageRecoveryClass()
+                    {
+                Company = "CetriK",
+                Recipient = "CetriK",
+                Description = " About the job\nWe are seeking talented interns to experience, contribute and grow at a fast-moving Blockchain Startup in NYC!\n\nAbout The Company\n\nOne of the fastest-growing and most trusted companies in blockchain security, CertiK is a true market leader. To date, CertiK has worked with over 3,200 Enterprise clients, secured over $310 billion worth of digital assets, and has detected over 60,000 vulnerabilities in blockchain code. Our clients include leading projects such as Aave, Polygon, Binance Smart Chain, Terra, Yearn, and Chiliz.\n\nInvestors = Insight Partners, Sequoia, Tiger Global, Coatue Management, Lightspeed, Advent International, SoftBank, Hillhouse Capital, Goldman Sachs, Coinbase Ventures, Binance, Shunwei Capital, IDG Capital, Wing, Legend Star, Danhua Capital and other investors.\n\nYou are\n\n    Thriving in a fast-paced, dynamic working environment.\n    Self-driven and passionate about cutting-edge technologies. Problem solver and fast learner with good analysis skills.\n    A strong team-player and always willing to make a positive impact on the team. Good verbal and written communication skills.\n\nRequirements\n\n    A BS/MS/PhD degree in Computer Science or relevant field or equivalent professional experience. Mastery of one or more backend languages: Python, Javascript(NodeJS), Golang, Ruby, Scala, Java, C/C++, etc.\n    Solid computer science fundamentals in object-oriented design, data structure and algorithms, computer networks, database systems, distributed systems, etc.\n    Excellent written communication/presentation skills, able to conduct client-facing meetings, output technical blogs addressing general/security topics, great team collaborations.\n    CI/CD, Docker, Git, Shell, Databases, Messaging Systems, Data Processing (Spark).\n\nCompensation: depending on level of experience: $2000 - $6000/month (fulltime)",
+                GptPrompt =UserInfo.UserInfoData.GetSavedData().ChatGPTPrompt,
+                JobTitle = "Software Engineer Intern",
+                Template = TemplateManager.GetTemplates()[0],
+            }, MainContentFrame);
             navbar = new Navbar();
             NavbarContentFrame.Content = navbar;
             navbar.NavigationEvent += Navbar_NavigationEvent;
