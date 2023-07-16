@@ -67,7 +67,7 @@ namespace Cover_Letter_Generator
             var t2 = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Templates\MicrosoftTemplates\Letterhead Simple Template.docx";
             var med = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Templates\MicrosoftTemplates\Social media marketing Template.docx";
             var output = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx";
-            StaticClasses.WordTools.MultiReplacement2(med, replacements, output);
+            StaticClasses.WordTools.MultiReplacement(med, replacements, output);
             /*TemplateManager.SaveTemplates(new()
             {
                 new("Letterhead Simple","Letterhead Simple Template.docx",TemplateGroup.Microsoft)

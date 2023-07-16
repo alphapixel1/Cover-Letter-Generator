@@ -36,13 +36,14 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
             InitializeComponent();
         }
 
-        public InitialResponseModifcationPage(ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame)
+     /*   public InitialResponseModifcationPage(ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame,Prompt prompt)
         {
+            this.Prompt = prompt;
+            OwnerFrame = ownerFrame;
             this.response = response;
             this.recoveryClass = recoveryClass;
-            OwnerFrame = ownerFrame;
             InitializeComponent();
-        }
+        }*/
 
         //public 
 
@@ -75,23 +76,33 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         }
         private async void SendPromptAsync()
         {
-            var r=await ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key, PromptBox.Text, response);
-            
+            ChatGptResponse? r = null;
+            try
+            {
+                r = await ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key, PromptBox.Text, response);
+            }
+            catch
+            {
+
+            }
             Application.Current.Dispatcher.Invoke(() =>
             {
                 if (r == null)
                 {
+                    Console.WriteLine("ChatGPT Error");
                     MessageBox.Show("An error occured with ChatGPT", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
                     RefreshMessages();
-                    //ResponseBox.Text = response.GetLastMessage().ToString();
-                    Console.WriteLine(r.GetLastMessage());
+                //ResponseBox.Text = response.GetLastMessage().ToString();
+                    Console.WriteLine("Message Recieved: "+response.GetLastMessage());
                 }
                 IsEnabled = true;
+                PromptBox.Text = "";
                 PromptBox.Focus();
             });
+           
         }
 
         private void NextStep_Click(object sender, RoutedEventArgs e)

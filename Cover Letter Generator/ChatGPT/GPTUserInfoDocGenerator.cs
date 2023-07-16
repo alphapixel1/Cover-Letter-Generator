@@ -1,4 +1,5 @@
-﻿using Cover_Letter_Generator.UserInfo;
+﻿using Cover_Letter_Generator.StaticClasses;
+using Cover_Letter_Generator.UserInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,18 @@ namespace Cover_Letter_Generator.ChatGPT
                 prompt = prompt.Replace($"%{termReplacement.Key}%", termReplacement.Value);
             }
             return new(replacements,prompt);
+        }
+
+        public static void GenerateDocx(Dictionary<string,string> replacements,Template.Template template,string chatGptText)
+        {
+            var replacements2 = new Dictionary<string, string>(replacements);
+            replacements2.Add("body", chatGptText);
+            foreach (var item in replacements2.ToList())
+            {
+                replacements2.Add($"%{item.Key}%", item.Value);
+                replacements2.Remove(item.Key);
+            }
+            WordTools.MultiReplacement(template.GetDocxPath(), replacements2, new Settings.Settings().DocxOuputLocation + "\\test.docx");
         }
        /* public async static Task<ModifiedUserInfoAndGptResponse?> Generate(UserInfoData userInfo,string company,string recipient, string jobDescription,string gptPrompt)
         {

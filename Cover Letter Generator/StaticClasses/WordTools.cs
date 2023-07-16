@@ -5,13 +5,15 @@ using System.Linq;
 using System.IO;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Drawing.Printing;
+using System.Windows;
 
 namespace Cover_Letter_Generator.StaticClasses
 {
     public static class WordTools
     {
-        public static void MultiReplacement2(string template, Dictionary<string, string> replacements, string newFilePath)
+        public static void MultiReplacement(string template, Dictionary<string, string> replacements, string newFilePath)
         {
+            MessageBox.Show("WordTools.MultiReplacement does not respect \\n breaks fix this");
             File.Copy(template, newFilePath, true);
 
             using (WordprocessingDocument doc = WordprocessingDocument.Open(newFilePath, true))

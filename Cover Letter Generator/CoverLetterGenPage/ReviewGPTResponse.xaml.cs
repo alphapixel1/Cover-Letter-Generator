@@ -25,7 +25,7 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         private readonly GPTUserInfoDocGenerator.ModifiedUserInfoAndGptResponse? Response;
         private readonly CoverLetterForm.PageRecoveryClass recoveryClass;
         private Frame OwnerFrame;
-        private Prompt PromptClass;
+        private Prompt? PromptClass;
         private string? promptText;
         private ChatGptResponse response;
 
@@ -64,7 +64,7 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             if(promptText == null)
-                OwnerFrame.Content = new InitialResponseModifcationPage(response, recoveryClass, OwnerFrame);
+                OwnerFrame.Content = new InitialResponseModifcationPage(PromptClass, recoveryClass, OwnerFrame, response);
             else
                 OwnerFrame.Content = new CoverLetterForm(recoveryClass, OwnerFrame);
             
@@ -74,6 +74,8 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         {
             if (PromptClass == null)
                 throw new Exception("PromptClass should not be null here");
+            //recoveryClass.Template.
+            GenerateDocx(PromptClass.Replacements, recoveryClass.Template, ResponseBox.Text);
         }
     }
 }
