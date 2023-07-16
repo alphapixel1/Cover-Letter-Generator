@@ -14,7 +14,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height=".3*" MaxHeight="150"/>
+            <RowDefinition Height=".3*" MaxHeight="75"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
@@ -33,11 +33,11 @@
             <TextBlock Text="This is where you ask ChatGPT to tweak what it has given you." Margin="10,3,0,0" VerticalAlignment="Center" FontSize="10"/>
         </StackPanel>
         
-        <TextBox Grid.Row="4" Margin="20,7" AcceptsReturn="True" x:Name="PromptBox" TextWrapping="Wrap" Text="this page is going to allow the user to send new messages to gpt to tweak it more" VerticalScrollBarVisibility="Visible"/>
+        <TextBox Grid.Row="4" MaxHeight="100" Margin="20,7" AcceptsReturn="True" x:Name="PromptBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
         
         
         <Menu Grid.Row="5" FlowDirection="RightToLeft" x:Name="ContinueMenuBar">
-            <MenuItem Header="Next Step" FlowDirection="LeftToRight"/>
+            <MenuItem Header="Next Step" FlowDirection="LeftToRight" Click="NextStep_Click"/>
             <MenuItem Header="Submit Prompt" FlowDirection="LeftToRight" Click="SubmitPrompt_Click"/>
         </Menu>
     </Grid>

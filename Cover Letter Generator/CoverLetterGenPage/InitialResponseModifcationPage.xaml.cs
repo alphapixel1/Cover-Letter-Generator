@@ -36,6 +36,16 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
             InitializeComponent();
         }
 
+        public InitialResponseModifcationPage(ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame)
+        {
+            this.response = response;
+            this.recoveryClass = recoveryClass;
+            OwnerFrame = ownerFrame;
+            InitializeComponent();
+        }
+
+        //public 
+
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             OwnerFrame.Content = new CoverLetterForm(recoveryClass, OwnerFrame);
@@ -82,6 +92,11 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
                 IsEnabled = true;
                 PromptBox.Focus();
             });
+        }
+
+        private void NextStep_Click(object sender, RoutedEventArgs e)
+        {
+            OwnerFrame.Content = new ReviewGPTResponse(response,recoveryClass,OwnerFrame,Prompt);
         }
     }
 }

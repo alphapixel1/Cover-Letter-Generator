@@ -19,47 +19,46 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <ScrollViewer>
-                <Grid Margin="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+            
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition />
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition />
+                    <RowDefinition Height="auto"/>
 
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <form:CustomTextControl Grid.Row="0" x:Name="CompanyInput" Label="Company" Icon="/CoverLetterGenPage/office.png" LabelWidth="64"/>
+                <form:CustomTextControl Grid.Row="0" x:Name="RecipientInput" Grid.Column="2" Label="Recipient" Icon="/CoverLetterGenPage/user(2).png" LabelWidth="64"/>
+
+                <form:CustomTextControl Grid.Row="1" x:Name="JobTitleInput" Grid.Column="0" Label="Job Title" Icon="/CoverLetterGenPage/briefcase.png" LabelWidth="64"/>
+                <Grid Grid.Row="1" Grid.Column="2" Margin="10,5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="68"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <TextBlock Text="Template" FontSize="15" Grid.Row="4"/>
+                    <Button Grid.Column="1" Height="22" BorderBrush="#ABADB3" Background="White" Click="TemplateChange_Click">
+                        <TextBlock Text="None" x:Name="SelectedTemplateBlock" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    </Button>
+                </Grid><!--Template Selector-->
 
-                    <form:CustomTextControl Grid.Row="0" x:Name="CompanyInput" Label="Company" Icon="/CoverLetterGenPage/office.png" LabelWidth="64"/>
-                    <form:CustomTextControl Grid.Row="0" x:Name="RecipientInput" Grid.Column="2" Label="Recipient" Icon="/CoverLetterGenPage/user(2).png" LabelWidth="64"/>
+                <TextBlock Text="Job Description" Grid.Row="2" FontSize="20" Margin="5,0"/>
+                <TextBox x:Name="DescriptionBox" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Text="add company, jobtitle and recipient to userinfo so it has a changeable default value" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
 
-                    <form:CustomTextControl Grid.Row="1" x:Name="JobTitleInput" Grid.Column="0" Label="Job Title" Icon="/CoverLetterGenPage/briefcase.png" LabelWidth="64"/>
-                    <Grid Grid.Row="1" Grid.Column="2" Margin="10,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="68"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Template" FontSize="15" Grid.Row="4"/>
-                        <Button Grid.Column="1" Height="22" BorderBrush="#ABADB3" Background="White" Click="TemplateChange_Click">
-                            <TextBlock Text="None" x:Name="SelectedTemplateBlock" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
-                        </Button>
-                    </Grid><!--Template Selector-->
-
-                    <TextBlock Text="Job Description" Grid.Row="2" FontSize="20" Margin="5,0"/>
-                    <TextBox x:Name="DescriptionBox" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Text="add company, jobtitle and recipient to userinfo so it has a changeable default value" Height="100" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="5,0,5,10"/>
-
-                    <TextBlock Text="GPT Prompt" Grid.Row="4" FontSize="18" VerticalAlignment="Center" Margin="5,0"/>
-                    <TextBox x:Name="GptPromptBox" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="5" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="0,0,5,5"/>
-                </Grid>
-            </ScrollViewer>
+                <TextBlock Text="GPT Prompt" Grid.Row="4" FontSize="18" VerticalAlignment="Center" Margin="5,0"/>
+                <TextBox x:Name="GptPromptBox" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="5" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" Margin="0,0,5,5"/>
+            </Grid>
+            
             <Grid Background="#EDEDED" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>

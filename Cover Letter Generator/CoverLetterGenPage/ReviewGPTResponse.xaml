@@ -24,7 +24,7 @@
             <TextBox AcceptsReturn="True" x:Name="ResponseBox" TextWrapping="Wrap"/>
         </ScrollViewer>
         <Menu Grid.Row="3" FlowDirection="RightToLeft" x:Name="ContinueMenuBar">
-            <MenuItem Header="Continue" FlowDirection="LeftToRight"/>
+            <MenuItem Header="Continue" FlowDirection="LeftToRight" Click="Generate_Click"/>
         </Menu>
     </Grid>
 </Page>

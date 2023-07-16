@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Cover_Letter_Generator.ChatGPT.GPTUserInfoDocGenerator;
 
 namespace Cover_Letter_Generator.CoverLetterGenPage
 {
@@ -24,39 +25,55 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         private readonly GPTUserInfoDocGenerator.ModifiedUserInfoAndGptResponse? Response;
         private readonly CoverLetterForm.PageRecoveryClass recoveryClass;
         private Frame OwnerFrame;
-        private string? prompt;
+        private Prompt PromptClass;
+        private string? promptText;
+        private ChatGptResponse response;
+
         public ReviewGPTResponse(string prompt,CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame)//for displaying generated prompts
         {
             OwnerFrame = ownerFrame;
             this.recoveryClass = recoveryClass;
-            this.prompt = prompt;
+            this.promptText = prompt;
             InitializeComponent();
         }
-        public ReviewGPTResponse(GPTUserInfoDocGenerator.ModifiedUserInfoAndGptResponse r, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame)
+     
+
+        public ReviewGPTResponse(ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame, Prompt prompt)
         {
-            this.Response = r;
-            OwnerFrame = ownerFrame;
+            this.response = response;
             this.recoveryClass = recoveryClass;
+            OwnerFrame = ownerFrame;
+            this.PromptClass = prompt;
             InitializeComponent();
-            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Response != null)
+            if (promptText == null)
             {
-                ResponseBox.Text = prompt;
+                
+                ResponseBox.Text = GPTUserInfoDocGenerator.GetTextWithoutHeaders(response.GetLastMessage().content);
             }
             else
             {
-                ResponseBox.Text = prompt;
+                ResponseBox.Text = promptText;
                 ContinueMenuBar.Visibility = Visibility.Collapsed;
             }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            OwnerFrame.Content = new CoverLetterForm(recoveryClass,OwnerFrame);
+            if(promptText == null)
+                OwnerFrame.Content = new InitialResponseModifcationPage(response, recoveryClass, OwnerFrame);
+            else
+                OwnerFrame.Content = new CoverLetterForm(recoveryClass, OwnerFrame);
+            
+        }
+
+        private void Generate_Click(object sender, RoutedEventArgs e)
+        {
+            if (PromptClass == null)
+                throw new Exception("PromptClass should not be null here");
         }
     }
 }
