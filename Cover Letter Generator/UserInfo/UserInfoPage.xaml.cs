@@ -58,6 +58,7 @@ namespace Cover_Letter_Generator.UserInfo
             CoverLengthInput.Value = dat.Length;
 
             GPTPromptBox.Text = dat.ChatGPTPrompt;
+            SkillsAboutMeBox.Text = dat.SkillsAboutMe;
             RefreshReplacementListBox();
         }
         public UserInfoPage()

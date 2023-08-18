@@ -72,32 +72,6 @@ namespace Cover_Letter_Generator.ChatGPT
             }
             WordTools.MultiReplacement(template.GetDocxPath(), replacements2, new Settings.Settings().DocxOuputLocation + "\\test.docx");
         }
-       /* public async static Task<ModifiedUserInfoAndGptResponse?> Generate(UserInfoData userInfo,string company,string recipient, string jobDescription,string gptPrompt)
-        {
-            var prompt = GetPrompt(userInfo, company, recipient, jobDescription, gptPrompt);
-            Console.WriteLine(prompt);
-            ChatGptResponse? resp = null;
-            try
-            {
-                resp = (await ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key, prompt.PromptText));
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
-            Console.WriteLine("\n\n response:");
-            Console.WriteLine(resp);
-            if (resp == null)
-                return null;
-            resp = new Regex(@"^(\s*\[[^\]]+\])+").Replace(resp.la, "");
-            Regex manager = new Regex(@"^\s*Dear Hiring Manager,\s*");
-            Regex sincierely = new Regex(@"\s*Sincerely,\s*\[Your Name]\s*");
-            resp = manager.Replace(resp, "");
-            resp = sincierely.Replace(resp, "");
-            return new(prompt.Replacements,resp);
-            //ChatGPT_API.GetChatGPTResponse(ChatGPT_API.Key,)
-        }*/
 
         public static string GetTextWithoutHeaders(string message)
         {

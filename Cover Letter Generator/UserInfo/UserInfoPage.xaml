@@ -14,7 +14,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <ScrollViewer>
-            <StackPanel Margin="2,0">
+            <StackPanel Margin="5,0">
                 <TextBlock Text="User Info" HorizontalAlignment="Center" FontSize="25"/>
                 <GroupBox Header="Basic Info" FontSize="20" BorderThickness="1.5">
                     <WrapPanel Margin="5,10">
@@ -52,7 +52,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Chat GPT Prompt" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBox x:Name="GPTPromptBox" AcceptsReturn="True" Grid.Row="1" Height="65" FontSize="12" VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="GPTPromptBox" AcceptsReturn="True" Grid.Row="1" Height="100" FontSize="12" VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2"/>
 
                         <form:CustomTextControl Grid.Column="1" x:Name="CoverLengthInput" Label="Cover Body Length" Icon="/UserInfo/arrows.png"/>
                     </Grid>
