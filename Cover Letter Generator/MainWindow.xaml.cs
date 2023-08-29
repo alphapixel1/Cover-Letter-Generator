@@ -35,6 +35,7 @@ namespace Cover_Letter_Generator
             TemplateManager.InitialSetup();
             InitializeComponent();
             //CreateDocument();
+            //RTFTest();
            /// gptAsync();
             return;
 
@@ -56,6 +57,7 @@ namespace Cover_Letter_Generator
 
             // ReplaceTextInWordDocument2(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Basic Template.docx", "%name%", "Nick Bell", @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx");
             //   gptAsync();
+            
             Dictionary<string, string> replacements = info.Replacements;
             replacements.Add("%recipient%", "Hiring Manager");
             replacements.Add("%body%", "this is the body");
@@ -75,7 +77,27 @@ namespace Cover_Letter_Generator
             Console.WriteLine(TemplateManager.MicrosoftTemplates);
             
         }
+        private void RTFTest()
+        {
+            string path = @"C:\Users\Nick\Desktop\test resume.rtf";
+            System.Windows.Forms.RichTextBox richTextBox = new();
 
+            // Load the RTF content from a file
+            richTextBox.LoadFile(path);
+            var data=UserInfo.UserInfoData.GetSavedData().AllReplacements;
+            data.Add("body", "test\nbitch");
+            foreach (var item in data)
+            {
+                richTextBox.Rtf = richTextBox.Rtf.Replace("%"+item.Key+"%", item.Value);
+            }
+            
+
+            // Save the modified RTF content to a new file
+            richTextBox.SaveFile(@"C:\Users\Nick\Desktop\test resume output.rtf");
+
+            // Display success message
+            Console.WriteLine("Text replacement completed.");
+        }
      
         private async Task gptAsync()
         {
