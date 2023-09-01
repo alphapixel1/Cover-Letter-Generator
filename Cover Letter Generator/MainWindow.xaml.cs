@@ -21,6 +21,10 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 using Cover_Letter_Generator.Template;
+using System.Xml;
+using HtmlAgilityPack;
+using System.Net;
+using Cover_Letter_Generator.External_Job_Boards;
 
 namespace Cover_Letter_Generator
 {
@@ -30,8 +34,15 @@ namespace Cover_Letter_Generator
     public partial class MainWindow : Window
     {
         public Navbar navbar;
+        public async void tryGet()
+        {
+            //var info=await new LinkedIn().GetInfo("https://www.linkedin.com/jobs/view/3702678631");
+            Console.WriteLine(await new LinkedIn().GetHtmlFromUrl("https://www.indeed.com/viewjob?jk=70ad3edea9ac538e&tk=1h99b2umogrh2800&from=hp&advn=8516238283002983&adid=288770639&ad=-6NYlbfkN0Ar5Izk-CWwVEbwUG7ji387dnTDr8mbbPq87XdjCmmdhtl7H4HvQB9HLwmZWWlrspPN6CguQpgrr6b9QQJBslzybQRAgiBpJmXWPIFqi4JPgWkjYepFHTRRtttsukqS91vnCqbX5WfttR6qmCWk1Uwv6oaTUxeEIkZ7V7CLdqwr18lVW1PaXe_lHwEwoEeOE1shkfYcwHFQTunhpe-17OtR77fKrXB-xtfBwG7Vr6GuTScR6oFrTv62asv0EXO0VCit3Z88xYmO6ZAzw-Q4EolJrKICmV8JZjn6ZeRacTWBl86s7B9zNFdHPq-wBkJvtYQaOn_XqvVVblRofyAxLTJCCq2dFxA3fimf_8khj3DjeoSt6FxF-iHCmWTa2fdwO3hUg1VN7zrA9a6no-chNIam6MEqT_iUlKtnOBvI7EEoC9GXVuhclHpAnmEZRoR2U_N-n9nK4j86cl898UwbFBLzmn7b1aEP4yk%3D&sjdu=Y4DFEt1XKMzyZfMUGiwoWbdjPoTA-P6TrsTT3brrlpcX7M0muZToxxuDRS1NRwgpxpfgcM-9ymkFMDoFKYaRyJunmW_Ct3TOcZi2NFmrLms&acatk=1h99b3o01is2u800&pub=4a1b367933fd867b19b072952f68dceb&xkcb=SoBC-_M3LpeEPMRd9h0LbzkdCdPP&vjs=3"));
+        }
         public MainWindow()
         {
+            //tryGet();
+          //  return;
             TemplateManager.InitialSetup();
             InitializeComponent();
             //CreateDocument();

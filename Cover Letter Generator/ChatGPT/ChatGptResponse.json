@@ -1,21 +1,21 @@
 {
-  "id": "chatcmpl-7shjkirSa7fWU7iyzLFL0L4VHN0Me",
+  "id": "chatcmpl-7u63WKtNtW3UdLouvG6x1GqyfgWyR",
   "object": "chat.completion",
-  "created": 1693272192,
+  "created": 1693604002,
   "model": "gpt-3.5-turbo-0613",
   "choices": [
     {
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Dear Hiring Manager,\n\nAs a Senior at the University of Cincinnati with a strong foundation in various programming languages, I am thrilled to apply for the internship opportunity at Tyler Technologies. I have experience and proficiency in C#, Java, Kotlin, JavaScript/TypeScript, HTML5, XML, SQL, XAML, Python, and regular expressions. \n\nThe role description of conducting research, coding, and testing new products aligns perfectly with my passion for software development. I am eager to experience the day-to-day practices of a high-tech software company and contribute to the community through my work. With a GPA of 3.4, I have demonstrated my commitment to academic excellence and the ability to perform well in a rigorous work environment. \n\nI am intrigued by the prospect of working on exciting projects and developing professional skills while receiving guidance from a Development Manager. Your emphasis on incorporating new technologies into the software design is particularly appealing to me, as I am always eager to learn and stay updated with the latest advancements in the field. \n\nMy ability to work well both independently and within a team environment, along with strong technical abilities, make me a suitable candidate for this internship. I have a proven track record of problem-solving, analytical thinking, and effective communication skills. \n\nI am excited about the opportunity to contribute to the success of Tyler Technologies and would be honored to be part of your team during this internship. Thank you for considering my application.\n\nSincerely,\n[Your Name]"
+        "content": "Yes, LinkedIn does provide a REST API called the LinkedIn Marketing Developer Platform (formerly known as the LinkedIn Ads API) that allows developers to access and interact with certain LinkedIn data, such as advertising campaigns and account information. However, access to this API requires approval from LinkedIn, and it is primarily intended for advertising purposes rather than general profile data scraping. To obtain access to the LinkedIn Marketing Developer Platform, you would need to apply for and be approved as a LinkedIn Marketing Developer partner."
       },
       "finish_reason": "stop"
     }
   ],
   "usage": {
-    "prompt_tokens": 728,
-    "completion_tokens": 293,
-    "total_tokens": 1021
+    "prompt_tokens": 120,
+    "completion_tokens": 95,
+    "total_tokens": 215
   }
 }
