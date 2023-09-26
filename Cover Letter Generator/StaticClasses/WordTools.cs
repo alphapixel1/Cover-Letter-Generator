@@ -13,67 +13,120 @@ namespace Cover_Letter_Generator.StaticClasses
     public static class WordTools
     {
          public static void MultiReplacement(string template, Dictionary<string, string> replacements, string newFilePath)
-         {
-             MessageBox.Show("WordTools.MultiReplacement does not respect \\n breaks fix this");
-            Console.WriteLine(newFilePath);
-            // REPLACE NEW LINES WITH A RANDOM STRING AND THEN ONCE REPLACEMENTS ARE DONE, BREAK UP THE TEXT INTO TEXT BREAK TEXT
-             File.Copy(template, newFilePath, true);
-
-             using (WordprocessingDocument doc = WordprocessingDocument.Open(newFilePath, true))
-             {
-                 MainDocumentPart mainPart = doc.MainDocumentPart;
-
-                 List<Text> texts = mainPart.RootElement.Descendants<Text>().ToList();
-                 //add header texts
-                 texts.AddRange(mainPart.HeaderParts.SelectMany(e =>e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
-
-                 //add footer
-                 texts.AddRange(mainPart.FooterParts.SelectMany(e =>e.Footer.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
-                 foreach (var text in texts)
-                 {
-                     Console.WriteLine(text.Text);
-                     foreach (KeyValuePair<string, string> entry in replacements)
-                     {
-                         while (text.Text.Contains(entry.Key))
-                         {
-                             text.Text = text.Text.Replace(entry.Key, entry.Value);
-                         }
-                     }
-                 }
-             }
-            
-         }
-   /*     public static HashSet<string> FindRegex(Regex regex,string docxPath)
         {
-            if (File.Exists(docxPath))
+
+            // REPLACE NEW LINES WITH A RANDOM STRING AND THEN ONCE REPLACEMENTS ARE DONE, BREAK UP THE TEXT INTO TEXT BREAK TEXT
+            File.Copy(template, newFilePath, true);
+
+            using (WordprocessingDocument doc = WordprocessingDocument.Open(newFilePath, true))
             {
-                using (WordprocessingDocument doc = WordprocessingDocument.Open(docxPath, true))
+                MainDocumentPart mainPart = doc.MainDocumentPart;
+
+                List<Text> texts = mainPart.RootElement.Descendants<Text>().ToList();
+                //add header texts
+                texts.AddRange(mainPart.HeaderParts.SelectMany(e => e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
+
+                //add footer
+                texts.AddRange(mainPart.FooterParts.SelectMany(e => e.Footer.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
+                foreach (var text in texts)
                 {
-                    MainDocumentPart mainPart = doc.MainDocumentPart;
-
-                    List<Text> texts = mainPart.RootElement.Descendants<Text>().ToList();
-                    //add header texts
-                    texts.AddRange(mainPart.HeaderParts.SelectMany(e => e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
-
-                    //add footer
-                    texts.AddRange(mainPart.FooterParts.SelectMany(e => e.Footer.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
-                    HashSet<string> matches = new HashSet<string>();
-                    foreach (var text in texts)
+                    //Console.WriteLine(text.Text);
+                    foreach (KeyValuePair<string, string> entry in replacements)
                     {
-                        Console.WriteLine(text.Text);
-                        if (regex.IsMatch(text.Text))
+                        while (text.Text.Contains(entry.Key))
                         {
-                            matches.Add(regex.)
-                        }
+                            if (entry.Value.Contains("\n"))
+                            {
+                                var index = text.Text.IndexOf(entry.Key);
+                                var start = text.Text.Substring(0, index);
 
+                                var end = text.Text.Substring(start.Length + entry.Key.Length, text.Text.Length - (index + entry.Key.Length));
+
+                                var lines = Regex.Split(entry.Value, "[\n\r]{1,}");
+
+
+                                Paragraph firstParagraph = (Paragraph)text.Parent.Parent;
+                                var paraProperties = firstParagraph.ParagraphProperties; // Get the paragraph properties
+
+                                text.Text = start + lines[0];
+
+                                Paragraph lastParagraph = firstParagraph;
+
+                                for (int i = 1; i < lines.Length; i++)
+                                {
+                                    // Create a new paragraph
+                                    Paragraph p = new Paragraph();
+
+                                    // Clone and set the paragraph properties
+                                    if (paraProperties != null)
+                                    {
+                                        p.ParagraphProperties = (ParagraphProperties)paraProperties.CloneNode(true);
+                                    }
+
+                                    // Clone and set the run properties
+                                    Run run = new Run();
+                                    RunProperties runProperties = ((Run)text.Parent).RunProperties;
+
+                                    if (runProperties != null)
+                                    {
+                                        run.RunProperties = (RunProperties)runProperties.CloneNode(true);
+                                    }
+
+                                    // Add text to the run
+                                    var t = (lines.Length == i + 1) ? lines[i] + end : lines[i];
+                                    run.AppendChild(new Text(t));
+
+                                    // Add the run to the paragraph
+                                    p.AppendChild(run);
+
+                                    // Insert the new paragraph after the lastParagraph
+                                    lastParagraph.InsertAfterSelf(p);
+                                    lastParagraph = p;
+                                }
+
+                            }
+                            else
+                            {
+                                text.Text = text.Text.Replace(entry.Key, entry.Value);
+                            }
+
+                        }
                     }
-                    return matches;
                 }
             }
-            else
-                throw new FileNotFoundException("File Not Found: "+docxPath);
-            return new HashSet<string>();
-        }*/
+
+        }
+        /*     public static HashSet<string> FindRegex(Regex regex,string docxPath)
+             {
+                 if (File.Exists(docxPath))
+                 {
+                     using (WordprocessingDocument doc = WordprocessingDocument.Open(docxPath, true))
+                     {
+                         MainDocumentPart mainPart = doc.MainDocumentPart;
+
+                         List<Text> texts = mainPart.RootElement.Descendants<Text>().ToList();
+                         //add header texts
+                         texts.AddRange(mainPart.HeaderParts.SelectMany(e => e.Header.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
+
+                         //add footer
+                         texts.AddRange(mainPart.FooterParts.SelectMany(e => e.Footer.Descendants<Run>().SelectMany(e => e.Descendants<Text>())));
+                         HashSet<string> matches = new HashSet<string>();
+                         foreach (var text in texts)
+                         {
+                             Console.WriteLine(text.Text);
+                             if (regex.IsMatch(text.Text))
+                             {
+                                 matches.Add(regex.)
+                             }
+
+                         }
+                         return matches;
+                     }
+                 }
+                 else
+                     throw new FileNotFoundException("File Not Found: "+docxPath);
+                 return new HashSet<string>();
+             }*/
 
         /*  public static void MultiReplacement(string template, Dictionary<string, string> replacements, string newFilePath)
           {

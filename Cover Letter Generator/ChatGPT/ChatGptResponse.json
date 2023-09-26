@@ -1,21 +1,21 @@
 {
-  "id": "chatcmpl-7u63WKtNtW3UdLouvG6x1GqyfgWyR",
+  "id": "chatcmpl-82qotA4Alwwd92gDRdg6GRkskgqzh",
   "object": "chat.completion",
-  "created": 1693604002,
+  "created": 1695690387,
   "model": "gpt-3.5-turbo-0613",
   "choices": [
     {
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Yes, LinkedIn does provide a REST API called the LinkedIn Marketing Developer Platform (formerly known as the LinkedIn Ads API) that allows developers to access and interact with certain LinkedIn data, such as advertising campaigns and account information. However, access to this API requires approval from LinkedIn, and it is primarily intended for advertising purposes rather than general profile data scraping. To obtain access to the LinkedIn Marketing Developer Platform, you would need to apply for and be approved as a LinkedIn Marketing Developer partner."
+        "content": "Dear Hiring Manager,\n\nI am writing to express my interest in the internship position at CertiK. As a senior at the University of Cincinnati with a strong background in programming languages such as C#, Java, Kotlin, JS/TS/NodeJS, HTML5, XML, SQL, XAML, Python, and RegEx, I believe I have the skills and knowledge required to contribute to CertiK's fast-moving blockchain startup.\n\nI have a GPA of 3.4 and have gained experience in various technologies and frameworks, including ASP.NET, Firefox/Chrome Extensions, and blockchain security. I thrive in fast-paced and dynamic working environments and am a self-driven individual passionate about cutting-edge technologies. I possess strong problem-solving and analysis skills, allowing me to adapt quickly and contribute effectively to the team.\n\nIn addition to my technical skills, I am a strong team player with excellent verbal and written communication skills. I understand the importance of effective communication in a collaborative work environment and am always willing to make a positive impact on the team. I have experience conducting client-facing meetings and have the ability to articulate technical concepts through technical blogs and presentations.\n\nI hold a BS degree in Computer Science and have a solid foundation in object-oriented design, data structures and algorithms, computer networks, database systems, and distributed systems. I am well-versed in CI/CD, Docker, Git, Shell, Databases, Messaging Systems, and Data Processing (Spark).\n\nI am excited about the opportunity to work at CertiK and contribute to its mission of blockchain security. The fast growth and trust CertiK has gained in the industry is inspiring, and I am eager to be a part of the team. If given the opportunity, I am confident that my technical skills, work ethic, and passion for technology will make me a valuable asset to CertiK.\n\nThank you for considering my application. I look forward to the opportunity to discuss my qualifications further.\n\nSincerely,\n[Your Name]"
       },
       "finish_reason": "stop"
     }
   ],
   "usage": {
-    "prompt_tokens": 120,
-    "completion_tokens": 95,
-    "total_tokens": 215
+    "prompt_tokens": 505,
+    "completion_tokens": 395,
+    "total_tokens": 900
   }
 }
