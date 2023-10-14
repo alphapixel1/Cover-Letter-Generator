@@ -1,6 +1,7 @@
 ﻿using Cover_Letter_Generator.ChatGPT;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -75,7 +77,23 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
             if (PromptClass == null)
                 throw new Exception("PromptClass should not be null here");
             //recoveryClass.Template.
-            GenerateDocx(PromptClass.Replacements, recoveryClass.Template, ResponseBox.Text);
+            var sfd=new SaveFileDialog();
+            sfd.FileName = "Cover.docx";
+            sfd.Filter = "Word Documents (*.docx)|*.docx";
+            sfd.InitialDirectory = new Settings.Settings().DocxOuputLocation;
+            sfd.DefaultExt = "docx";
+            sfd.OverwritePrompt = true;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                GenerateDocx(sfd.FileName,PromptClass.Replacements, recoveryClass.Template, ResponseBox.Text);
+                using Process fileopener = new Process();
+                fileopener.StartInfo.FileName = "explorer";
+                fileopener.StartInfo.Arguments = "\"" + sfd.FileName + "\"";
+                fileopener.Start();
+
+                // Open the Word document
+                //Microsoft.Office.Interop.Word.Document doc = wordApp.Documents.Open(filePath);
+            }
         }
     }
 }

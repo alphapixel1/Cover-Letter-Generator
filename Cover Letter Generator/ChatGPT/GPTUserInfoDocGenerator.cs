@@ -61,7 +61,7 @@ namespace Cover_Letter_Generator.ChatGPT
             return new(replacements,prompt);
         }
 
-        public static void GenerateDocx(Dictionary<string,string> replacements,Template.Template template,string chatGptText)
+        public static void GenerateDocx(string outputFilePath,Dictionary<string,string> replacements,Template.Template template,string chatGptText)
         {
             var replacements2 = new Dictionary<string, string>(replacements);
             replacements2.Add("body", chatGptText);
@@ -70,7 +70,7 @@ namespace Cover_Letter_Generator.ChatGPT
                 replacements2.Add($"%{item.Key}%", item.Value);
                 replacements2.Remove(item.Key);
             }
-            WordTools.MultiReplacement(template.GetDocxPath(), replacements2, new Settings.Settings().DocxOuputLocation + "\\test.docx");
+            WordTools.MultiReplacement2(template.GetDocxPath(), replacements2, outputFilePath);
         }
 
         public static string GetTextWithoutHeaders(string message)

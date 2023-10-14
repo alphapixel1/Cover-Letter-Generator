@@ -41,14 +41,29 @@ namespace Cover_Letter_Generator.ChatGPT
                 
                 string string_content = JsonConvert.SerializeObject(requestBody);
                 var content = new StringContent(string_content, Encoding.UTF8, "application/json");
-            //    Console.WriteLine(string_content);
+                //    Console.WriteLine(string_content);
+                try
+                {
+                    File.WriteAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\ChatGPT\messageSent.json", string_content);
+                }
+                catch
+                {
+                    Console.WriteLine("Not running on nicks pc");
+                }
                 var response = await client.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                //    Console.WriteLine(responseContent);
-                    File.WriteAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\ChatGPT\ChatGptResponse.json", responseContent);
+                    //    Console.WriteLine(responseContent);
+                    try
+                    {
+                        File.WriteAllText(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\ChatGPT\ChatGptResponse.json", responseContent);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Not running on nicks pc");
+                    }
                   //  dynamic responseData = JsonConvert.DeserializeObject(responseContent);
                     ChatGptResponse? chatGptResponse = JsonConvert.DeserializeObject<ChatGptResponse>(responseContent);
                     if (conversation != null)

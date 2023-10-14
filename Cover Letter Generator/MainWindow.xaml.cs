@@ -50,65 +50,33 @@ namespace Cover_Letter_Generator
            /// gptAsync();
             return;
 
-            UserInfo.UserInfoData info = new()
-            {
-                PhoneNumber = "513-867-5309",
-                Email = "email@mail.uc.edu",
-                Name = "Richy Rich",
-                Street = "1600 Pennsylvania Avenue NW",
-                City="DC",
-                State="Washington",
-                Zip= "20500",
-                Website="https://github.com"
-            };
-            // var fs = new FileStream(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Document.docx", FileMode.Create, FileAccess.Write);
+         
+            Dictionary<string, string> replacements = UserInfo.UserInfoData.GetSavedData().AllReplacements;
+            replacements.Add("recipient", "Hiring Manager");
+            replacements.Add("body", "this is the body");
+            replacements.Add("company", "company name");
+            replacements.Add("jobtitle", "this is the job title");
+            //replacements.Add("today", DateTime.Now.ToString("M/d/y"));
 
-            //            var doc = new Template.Templates.BasicTemplate().ApplyTemplate(info, "Hiring Manager", "hello");
-            //          doc.Write(fs);
 
-            // ReplaceTextInWordDocument2(@"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Basic Template.docx", "%name%", "Nick Bell", @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx");
-            //   gptAsync();
-            
-            Dictionary<string, string> replacements = info.Replacements;
-            replacements.Add("%recipient%", "Hiring Manager");
-            replacements.Add("%body%", "this is the body");
-            replacements.Add("%company%", "company name");
-            replacements.Add("%jobtitle%", "this is the job title");
-            replacements.Add("%today%", DateTime.Now.ToString("M/d/y"));
-
-            var input = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Templates\Basic Template.docx";
+            var input = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Templates\OtherTemplates\Basic Template.docx";
             var t2 = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Templates\MicrosoftTemplates\Letterhead Simple Template.docx";
             var med = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\Templates\MicrosoftTemplates\Social media marketing Template.docx";
             var output = @"C:\Users\Nick\source\repos\Cover Letter Generator\Cover Letter Generator\output.docx";
-            StaticClasses.WordTools.MultiReplacement(med, replacements, output);
+            var newReps = new Dictionary<string, string>();
+            foreach (var item in replacements)
+            {
+                newReps["%" + item.Key + "%"] = item.Value;
+            }
+            StaticClasses.WordTools.MultiReplacement2(input, newReps, output);
             /*TemplateManager.SaveTemplates(new()
             {
                 new("Letterhead Simple","Letterhead Simple Template.docx",TemplateGroup.Microsoft)
             });*/
-            Console.WriteLine(TemplateManager.MicrosoftTemplates);
+            //Console.WriteLine(TemplateManager.MicrosoftTemplates);
             
         }
-        private void RTFTest()
-        {
-            string path = @"C:\Users\Nick\Desktop\test resume.rtf";
-            System.Windows.Forms.RichTextBox richTextBox = new();
-
-            // Load the RTF content from a file
-            richTextBox.LoadFile(path);
-            var data=UserInfo.UserInfoData.GetSavedData().AllReplacements;
-            data.Add("body", "test\nbitch");
-            foreach (var item in data)
-            {
-                richTextBox.Rtf = richTextBox.Rtf.Replace("%"+item.Key+"%", item.Value);
-            }
-            
-
-            // Save the modified RTF content to a new file
-            richTextBox.SaveFile(@"C:\Users\Nick\Desktop\test resume output.rtf");
-
-            // Display success message
-            Console.WriteLine("Text replacement completed.");
-        }
+    
      
         private async Task gptAsync()
         {
