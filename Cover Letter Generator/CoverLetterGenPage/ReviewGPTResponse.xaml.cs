@@ -24,10 +24,11 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
     /// </summary>
     public partial class ReviewGPTResponse : Page
     {
-        private readonly GPTUserInfoDocGenerator.ModifiedUserInfoAndGptResponse? Response;
+        private readonly ModifiedUserInfoAndGptResponse? Response;
         private readonly CoverLetterForm.PageRecoveryClass recoveryClass;
         private Frame OwnerFrame;
         private Prompt? PromptClass;
+        private readonly string? initResponseBoxText;
         private string? promptText;
         private ChatGptResponse response;
 
@@ -35,17 +36,20 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
         {
             OwnerFrame = ownerFrame;
             this.recoveryClass = recoveryClass;
-            this.promptText = prompt;
+            promptText = prompt;
+            Console.WriteLine("constructor 1");
             InitializeComponent();
         }
      
 
-        public ReviewGPTResponse(ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame, Prompt prompt)
+        public ReviewGPTResponse(ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame, Prompt prompt,string? initResponseBoxText=null)
         {
+            Console.WriteLine("constructor 2");
             this.response = response;
             this.recoveryClass = recoveryClass;
             OwnerFrame = ownerFrame;
             this.PromptClass = prompt;
+            this.initResponseBoxText = initResponseBoxText;
             InitializeComponent();
         }
 
@@ -61,6 +65,8 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
                 ResponseBox.Text = promptText;
                 ContinueMenuBar.Visibility = Visibility.Collapsed;
             }
+            if (initResponseBoxText != null)
+                ResponseBox.Text = initResponseBoxText;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -74,8 +80,15 @@ namespace Cover_Letter_Generator.CoverLetterGenPage
 
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
+
             if (PromptClass == null)
                 throw new Exception("PromptClass should not be null here");
+            //System.Windows.MessageBox.Show(promptText);
+            //OwnerFrame.Content = new PreviewPage(promptText,PromptClass, recoveryClass, OwnerFrame,ResponseBox.Text);
+            //ChatGptResponse response, CoverLetterForm.PageRecoveryClass recoveryClass, Frame ownerFrame, Prompt prompt
+            OwnerFrame.Content = new PreviewPage(response, recoveryClass, OwnerFrame, PromptClass,ResponseBox.Text);
+            return;
+            
             //recoveryClass.Template.
             var sfd=new SaveFileDialog();
             sfd.FileName = "Cover.docx";

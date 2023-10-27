@@ -157,7 +157,6 @@ namespace Cover_Letter_Generator.StaticClasses
         }
         static void FindAndReplaceInStoryRange(Microsoft.Office.Interop.Word.Range range, string Key,string Value)
         {
-            
                 range.Find.ClearFormatting();
                 range.Find.Text = Key;
 
@@ -176,6 +175,21 @@ namespace Cover_Letter_Generator.StaticClasses
             
         }
 
-
+        public static bool ConvertToPdf(string docx, string output)
+        {
+            try
+            {
+                Application wordApp = new Application();
+                Microsoft.Office.Interop.Word.Document doc = wordApp.Documents.Open(docx);
+                doc.ExportAsFixedFormat(output, WdExportFormat.wdExportFormatPDF);
+                doc.Close();
+                wordApp.Quit();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

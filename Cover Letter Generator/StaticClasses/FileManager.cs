@@ -11,7 +11,7 @@ namespace Cover_Letter_Generator.StaticClasses
 {
     internal class FileManager
     {
-        public static string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        public static string appDataFolderPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData); } }
         public static string LocalStorageFolder
         {
             get
